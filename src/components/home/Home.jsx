@@ -1,21 +1,20 @@
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import Hero from "./Hero";
+import MainContent from "./MainContent";
+import Services from "./Services";
 
 const Home = () => {
+  let yoe = 18;
+    let dish = 100;
+    let tm = 50;
+    let guest = 15000;
   return (
-    <article className="w-full h-full">
-      <div className="absolute inset-0 -z-10 bg-black">
-        <img
-          src="/src/assets/Img/bg_1.jpg"
-          alt="Hero Background"
-          className="w-full h-full object-cover opacity-50"
-        />
-        <div className="absolute inset-0 bg-linear-to-t from-black via-black/30 to-black/60" />
+    <article className="w-full h-screen gap-6">
+      <div className="w-full">
+        <Hero />
       </div>
-
-      <div className="absolute inset-0 flex justify-between items-center px-5">
-        <ChevronLeft size={30} />
-        <ChevronRight size={30} />
-      </div>
+      <MainContent />
+      <Services yoe={yoe} dish={dish} tm={tm} guest={guest}/>
+      
     </article>
   );
 };
