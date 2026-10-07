@@ -18,12 +18,12 @@ const MainContent = () => {
         </div>
       </section>
       <section className="w-[50%] flex flex-col justify-center gap-5">
-        <div class="w-full pt-6">
-          <p class="text-9xl text-[#b89552] font-['Great_Vibes']">
+        <div className="w-full pt-6">
+          <p className="text-9xl text-[#b89552] font-['Great_Vibes']">
             About
           </p>
 
-          <h2 class="text-7xl font-bold leading-20">
+          <h2 className="text-7xl font-bold leading-20">
             Feliciano
             <br />
             Restaurant
