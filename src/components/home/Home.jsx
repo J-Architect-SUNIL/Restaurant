@@ -7,15 +7,13 @@ import Services from "./Services";
 import SpecialMenu from "./SpecialMenu";
 
 const Home = () => {
-  let yoe = 18;
-  let dish = 100;
-  let tm = 50;
-  let guest = 15000;
+  const yoe = 18;
+  const dish = 100;
+  const tm = 50;
+  const guest = 15000;
   return (
-    <article className="w-full h-screen gap-6">
-      <div className="w-full">
-        <Hero />
-      </div>
+    <article className="w-full h-full">
+      <Hero />
       <MainContent />
       <Services yoe={yoe} dish={dish} tm={tm} guest={guest} />
       <CateringServices />
