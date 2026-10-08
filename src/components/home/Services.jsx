@@ -3,18 +3,18 @@ const Services = ({ yoe, dish, tm, guest }) => {
   let words = toWords(yoe);
   return (
     <section className="w-full h-[30vh] flex justify-center items-center gap-30">
-      <diV>
+      <div>
         <p className="text-6xl font-bold text-yellow-800">{yoe}</p>
         <p>YEARS OF EXPERIENCE</p>
-      </diV>
-      <diV>
+      </div>
+      <div>
         <p className="text-6xl font-bold text-yellow-800">{dish}</p>
         <p>DISHES ON THE MENU</p>
-      </diV>
-      <diV>
+      </div>
+      <div>
         <p className="text-6xl font-bold text-yellow-800">{tm}</p>
         <p>TEAM MEMBERS</p>
-      </diV>
+      </div>
       <div>
         <p className="text-6xl font-bold text-yellow-800">{guest}</p>
         <p>HAPPY GUESTS</p>
