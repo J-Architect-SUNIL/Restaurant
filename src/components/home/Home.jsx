@@ -2,6 +2,7 @@ import CateringServices from "./CateringServices";
 import Hero from "./Hero";
 import MainContent from "./MainContent";
 import MasterChef from "./MasterChef";
+import ReservationSection from "./ReservationSection";
 import Services from "./Services";
 import SpecialMenu from "./SpecialMenu";
 
@@ -20,6 +21,7 @@ const Home = () => {
       <CateringServices />
       <SpecialMenu />
       <MasterChef />
+      <ReservationSection />
     </article>
   );
 };
