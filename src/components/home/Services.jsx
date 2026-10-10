@@ -19,7 +19,6 @@ const Services = ({ yoe, dish, tm, guest }) => {
         <p className="text-6xl font-bold text-yellow-800">{guest}</p>
         <p>HAPPY GUESTS</p>
       </div>
-
       <div className="w-[15%] text-xl"><p>{words} years of cooking for our neighbours, one plate at a time.</p></div>
     </section>
   );
