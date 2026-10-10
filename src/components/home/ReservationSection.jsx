@@ -1,10 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
 const ReservationSection = () => {
-  let userDetails = {};
-  let [] = useState();
-
   const articleRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -17,30 +14,32 @@ const ReservationSection = () => {
     damping: 20,
   });
 
-  const floatY = useTransform(smoothProgress, [0, 1], ["60px", "-60px"]);
+  const floatY = useTransform(smoothProgress, [0, 1], ["40px", "-40px"]);
 
   return (
     <article
       ref={articleRef}
-      className="relative min-h-screen w-full overflow-hidden bg-cover bg-center flex items-center justify-center px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24"
+      className="relative min-h-screen w-full overflow-hidden bg-cover bg-center flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8"
       style={{
         backgroundImage: "url('/src/assets/Img/restaurant_bg.png')",
         backgroundAttachment: "fixed",
-      }}>
+      }}
+    >
       <motion.section
         style={{ y: floatY }}
-        className="w-full max-w-6xl flex items-center py-8 sm:py-10 md:py-12">
-        <form className="bg-white shadow-2xl w-full max-w-[95%] sm:max-w-[90%] md:max-w-[80%] lg:max-w-[75%] xl:max-w-[70%] min-h-[85vh] sm:min-h-[80vh] md:min-h-[75vh] p-5 sm:p-6 md:p-8 lg:p-10 flex flex-col justify-center items-center gap-5 sm:gap-6 md:gap-8">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-2 sm:mb-4 text-gray-800 text-center">
+        className="w-full max-w-4xl flex items-center justify-center"
+      >
+        <form className="bg-white shadow-2xl w-full p-6 sm:p-8 lg:p-12 rounded-xl flex flex-col justify-center items-center gap-6">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-gray-800 text-center">
             Make Reservation
           </h2>
-
-          <section className="w-full flex flex-col md:flex-row gap-5 md:gap-6 lg:gap-8">
-            <section className="w-full md:w-1/2 flex flex-col gap-4 sm:gap-5">
-              <div className="w-full flex flex-col gap-2 sm:gap-3">
+          <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-2">
                 <label
                   htmlFor="name"
-                  className="text-base sm:text-lg md:text-xl font-bold">
+                  className="text-sm sm:text-base font-bold text-gray-700"
+                >
                   Name
                 </label>
                 <input
@@ -48,13 +47,14 @@ const ReservationSection = () => {
                   id="name"
                   name="name"
                   placeholder="Your Name"
-                  className="w-full h-12 sm:h-13 md:h-15 px-4 sm:px-5 border border-gray-300 text-base sm:text-lg md:text-xl"/>
+                  className="w-full h-11 sm:h-12 px-4 border border-gray-300 rounded text-sm sm:text-base focus:outline-none focus:border-yellow-600"
+                />
               </div>
-
-              <div className="w-full flex flex-col gap-2 sm:gap-3">
+              <div className="flex flex-col gap-2">
                 <label
                   htmlFor="phone"
-                  className="text-base sm:text-lg md:text-xl font-bold">
+                  className="text-sm sm:text-base font-bold text-gray-700"
+                >
                   Phone
                 </label>
                 <input
@@ -62,28 +62,30 @@ const ReservationSection = () => {
                   id="phone"
                   name="phone"
                   placeholder="Phone"
-                  className="w-full h-12 sm:h-13 md:h-15 px-4 sm:px-5 border border-gray-300 text-base sm:text-lg md:text-xl"/>
+                  className="w-full h-11 sm:h-12 px-4 border border-gray-300 rounded text-sm sm:text-base focus:outline-none focus:border-yellow-600"
+                />
               </div>
-
-              <div className="w-full flex flex-col gap-2 sm:gap-3">
+              <div className="flex flex-col gap-2">
                 <label
                   htmlFor="time"
-                  className="text-base sm:text-lg md:text-xl font-bold">
+                  className="text-sm sm:text-base font-bold text-gray-700"
+                >
                   Time
                 </label>
                 <input
                   type="time"
                   id="time"
                   name="time"
-                  className="w-full h-12 sm:h-13 md:h-15 px-4 sm:px-5 border border-gray-300 text-base sm:text-lg md:text-xl"/>
+                  className="w-full h-11 sm:h-12 px-4 border border-gray-300 rounded text-sm sm:text-base focus:outline-none focus:border-yellow-600"
+                />
               </div>
-            </section>
-
-            <section className="w-full md:w-1/2 flex flex-col gap-4 sm:gap-5">
-              <div className="w-full flex flex-col gap-2 sm:gap-3">
+            </div>
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-2">
                 <label
                   htmlFor="email"
-                  className="text-base sm:text-lg md:text-xl font-bold">
+                  className="text-sm sm:text-base font-bold text-gray-700"
+                >
                   Email
                 </label>
                 <input
@@ -91,32 +93,35 @@ const ReservationSection = () => {
                   id="email"
                   name="email"
                   placeholder="Your Email"
-                  className="w-full h-12 sm:h-13 md:h-15 px-4 sm:px-5 border border-gray-300 text-base sm:text-lg md:text-xl"/>
+                  className="w-full h-11 sm:h-12 px-4 border border-gray-300 rounded text-sm sm:text-base focus:outline-none focus:border-yellow-600"
+                />
               </div>
-
-              <div className="w-full flex flex-col gap-2 sm:gap-3">
+              <div className="flex flex-col gap-2">
                 <label
                   htmlFor="date"
-                  className="text-base sm:text-lg md:text-xl font-bold">
+                  className="text-sm sm:text-base font-bold text-gray-700"
+                >
                   Date
                 </label>
                 <input
                   type="date"
                   id="date"
                   name="date"
-                  className="w-full h-12 sm:h-13 md:h-15 px-4 sm:px-5 border border-gray-300 text-base sm:text-lg md:text-xl"/>
+                  className="w-full h-11 sm:h-12 px-4 border border-gray-300 rounded text-sm sm:text-base focus:outline-none focus:border-yellow-600"
+                />
               </div>
-
-              <div className="w-full flex flex-col gap-2 sm:gap-3">
+              <div className="flex flex-col gap-2">
                 <label
                   htmlFor="guests"
-                  className="text-base sm:text-lg md:text-xl font-bold">
+                  className="text-sm sm:text-base font-bold text-gray-700"
+                >
                   Guests
                 </label>
                 <select
                   name="guests"
                   id="guests"
-                  className="w-full h-12 sm:h-13 md:h-15 px-4 sm:px-5 border border-gray-300 text-base sm:text-lg md:text-xl">
+                  className="w-full h-11 sm:h-12 px-4 border border-gray-300 rounded text-sm sm:text-base bg-white focus:outline-none focus:border-yellow-600"
+                >
                   <option value="">Guests</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -124,10 +129,12 @@ const ReservationSection = () => {
                   <option value="4">4+</option>
                 </select>
               </div>
-            </section>
-          </section>
-
-          <button className="w-full sm:w-64 md:w-70 h-12 sm:h-13 md:h-15 text-lg sm:text-xl md:text-2xl bg-yellow-600 rounded border border-yellow-600 hover:bg-white hover:text-yellow-600 transition duration-300">
+            </div>
+          </div>
+          <button
+            type="submit"
+            className="w-full sm:w-72 h-12 sm:h-14 text-base sm:text-lg font-medium bg-yellow-600 text-white rounded border border-yellow-600 hover:bg-white hover:text-yellow-600 transition-colors duration-1000 mt-2"
+          >
             Make a Reservation
           </button>
         </form>
