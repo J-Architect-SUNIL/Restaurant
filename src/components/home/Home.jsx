@@ -1,10 +1,13 @@
 import CateringServices from "./CateringServices";
 import Hero from "./Hero";
-import MainContent from "./MainContent";
+import About from "../about/About";
 import MasterChef from "./MasterChef";
 import ReservationSection from "./ReservationSection";
 import Services from "./Services";
-import SpecialMenu from "./SpecialMenu";
+import Menu from "../menu/Menu";
+import TestimonialGuests from "./TestimonialGuests";
+import RecentPosts from "./RecentPosts";
+import Footer from "./Footer";
 
 const Home = () => {
   const yoe = 18;
@@ -14,12 +17,15 @@ const Home = () => {
   return (
     <article className="w-full h-full">
       <Hero />
-      <MainContent />
+      <About />
       <Services yoe={yoe} dish={dish} tm={tm} guest={guest} />
       <CateringServices />
-      <SpecialMenu />
+      <Menu />
       <MasterChef />
       <ReservationSection />
+      <TestimonialGuests />
+      <RecentPosts />
+      <Footer />
     </article>
   );
 };
