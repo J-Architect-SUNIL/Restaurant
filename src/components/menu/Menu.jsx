@@ -49,60 +49,56 @@ const Menu = () => {
       imageFirst: true,
     },
   ];
+
   return (
-    <section className="w-full min-h-screen flex flex-col items-center gap-25">
-      <section className="w-full flex flex-col items-center justify-center">
-        <p className="text-9xl text-[#b89552] font-['Great_Vibes']">
+    <section className="w-full min-h-screen flex flex-col items-center gap-10 sm:gap-16 py-12 px-4 sm:px-8 lg:px-16 overflow-hidden">
+      <section className="w-full flex flex-col items-center justify-center text-center">
+        <p className="text-5xl sm:text-7xl lg:text-9xl text-[#b89552] font-['Great_Vibes']">
           Specialities
         </p>
-        <p className="font-bold text-6xl">Our Menu</p>
+        <h2 className="font-bold text-3xl sm:text-5xl lg:text-6xl text-gray-900 mt-2 sm:mt-0">
+          Our Menu
+        </h2>
       </section>
-      <article className="w-[80%] flex flex-wrap h-full justify-center items-center border border-gray-300">
-        {menuItem.map((Item) => {
-            return Item.imageFirst ? (
-              <div key={Item.content} className="w-1/2 h-[35vh] flex justify-center">
-                <div className="w-1/2 h-full justify-center items-center overflow-hidden">
-                  <img
-                    src={Item.image}
-                    alt={Item.alt}
-                    className="w-full h-full scale-100"
-                  />
-                </div>
-                <div className="w-[50%] h-full flex flex-col justify-center p-5 gap-5 text-2xl">
-                  <div className="flex gap-10">
-                    <p className="font-bold">{Item.content}</p>
-                    <p className="text-[#b89552] font-bold">₹{Item.price}</p>
-                  </div>
-                  <p>{Item.description}</p>
-                  <button className="mt-3 w-35 h-12 rounded bg-yellow-600 hover:text-yellow-600 hover:bg-white border border-yellow-600">
-                    Book now
-                  </button>
-                </div>
+      <article className="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+        {menuItem.map((item) => {
+          return (
+            <div
+              key={item.content}
+              className={`w-full flex flex-col ${
+                item.imageFirst ? "lg:flex-row" : "lg:flex-row-reverse"
+              } border-b lg:border-b-0 border-gray-200 min-h-70`}
+            >
+              <div className="w-full lg:w-1/2 h-48 sm:h-64 lg:h-auto overflow-hidden shrink-0">
+                <img
+                  src={item.image}
+                  alt={item.alt}
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                />
               </div>
-            ) : (
-              <div key={Item.content} className="w-1/2 h-[35vh] flex justify-center">
-                <div className="w-1/2 h-full flex flex-col justify-center p-5 gap-5 text-2xl">
-                  <div className="flex gap-10">
-                    <p className="font-bold">{Item.content}</p>
-                    <p className="text-[#b89552] font-bold">₹{Item.price}</p>
+              <div className="w-full lg:w-1/2 flex flex-col justify-between p-5 sm:p-6 lg:p-8 bg-white gap-4">
+                <div>
+                  <div className="flex justify-between items-start gap-2 mb-2">
+                    <p className="font-bold text-lg sm:text-xl lg:text-2xl text-gray-900 leading-tight">
+                      {item.content}
+                    </p>
+                    <p className="text-[#b89552] font-bold text-lg sm:text-xl shrink-0">
+                      ₹{item.price}
+                    </p>
                   </div>
-                  <p>{Item.description}</p>
-                  <button className="mt-3 w-35 h-12 rounded bg-yellow-600 hover:text-yellow-600 hover:bg-white border border-yellow-600">
-                    Book now
-                  </button>
+                  <p className="text-gray-500 text-xs sm:text-sm lg:text-base leading-relaxed">
+                    {item.description}
+                  </p>
                 </div>
-                <div className="w-[50%] h-full justify-center items-center overflow-hidden">
-                  <img
-                    src={Item.image}
-                    alt={Item.alt}
-                    className="w-full h-full scale-100"
-                  />
-                </div>
+
+                <button className="w-full sm:w-36 h-10 sm:h-12 rounded bg-yellow-600 text-white font-medium hover:text-yellow-600 hover:bg-white border border-yellow-600 transition-colors text-sm sm:text-base duration-1000">
+                  Book now
+                </button>
               </div>
-            );
+            </div>
+          );
         })}
       </article>
-      <div className="w-full h-[10vh]"></div>
     </section>
   );
 };
