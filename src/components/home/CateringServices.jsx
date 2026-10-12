@@ -1,10 +1,8 @@
 import { useState, useRef } from "react";
 import { Cake, ConciergeBell, Handshake } from "lucide-react";
-
 const CateringServices = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef(null);
-
   const services = [
     {
       icon: Cake,
@@ -22,15 +20,16 @@ const CateringServices = () => {
       description: "Seasonal menus, a wine pairing and our team on the day...",
     },
   ];
-
   const handleScroll = () => {
-    if (scrollRef.current) {
-      const { scrollLeft, clientWidth } = scrollRef.current;
-      const index = Math.round(scrollLeft / clientWidth);
-      setActiveIndex(index);
-    }
+    const container = scrollRef.current;
+    if (!container) return;
+    const firstSlide = container.firstElementChild;
+    if (!firstSlide) return;
+    const slideWidth = firstSlide.getBoundingClientRect().width;
+    const gap = parseFloat(getComputedStyle(container).columnGap) || 0;
+    const index = Math.round(container.scrollLeft / (slideWidth + gap));
+    setActiveIndex(Math.min(index, services.length - 1));
   };
-
   const scrollToSlide = (index) => {
     if (scrollRef.current) {
       const width = scrollRef.current.clientWidth;
@@ -41,13 +40,11 @@ const CateringServices = () => {
       setActiveIndex(index);
     }
   };
-
   return (
     <section className="w-full py-16 sm:py-20 px-4 sm:px-8 lg:px-20 flex flex-col justify-center items-center gap-8 sm:gap-16 overflow-hidden">
       <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-center tracking-tight text-gray-900">
         Catering Services
       </h2>
-
       <div className="w-full max-w-7xl">
         <div
           ref={scrollRef}
@@ -62,9 +59,9 @@ const CateringServices = () => {
                 className="w-full min-w-full md:min-w-0 md:max-w-sm shrink-0 snap-center text-center flex flex-col justify-center items-center gap-4 p-6 rounded-lg transition-transform hover:-translate-y-1 duration-300 bg-white md:bg-transparent shadow-sm md:shadow-none border md:border-none border-gray-100"
               >
                 <IconComponent className="w-12 h-12 sm:w-16 sm:h-16 text-[#C8A97E] shrink-0" />
-                <p className="text-xl sm:text-2xl font-bold text-gray-900">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900">
                   {s.title}
-                </p>
+                </h3>
                 <p className="text-sm sm:text-base text-gray-500 leading-relaxed max-w-xs sm:max-w-none">
                   {s.description}
                 </p>
@@ -72,11 +69,10 @@ const CateringServices = () => {
             );
           })}
         </div>
-
         <div className="flex md:hidden justify-center items-center gap-2 mt-4">
           {services.map((_, index) => (
             <button
-              key={index}
+              key={`service-dot-${index}`}
               onClick={() => scrollToSlide(index)}
               className={`h-2.5 rounded-full transition-all duration-300 ${
                 activeIndex === index
@@ -91,5 +87,4 @@ const CateringServices = () => {
     </section>
   );
 };
-
 export default CateringServices;

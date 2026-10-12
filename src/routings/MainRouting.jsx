@@ -6,7 +6,6 @@ import Menu from "../components/menu/Menu";
 import Stories from "../components/stories/Stories";
 import Contact from "../components/contact/Contact";
 import BookAtable from "../components/booking/BookAtable";
-
 const allRoutes = createBrowserRouter([
     {
       path: "/",
@@ -22,8 +21,6 @@ const allRoutes = createBrowserRouter([
     },
   ]);
 const MainRouting = () => {
-  
   return <RouterProvider router={allRoutes} />;
 };
-
 export default MainRouting;
