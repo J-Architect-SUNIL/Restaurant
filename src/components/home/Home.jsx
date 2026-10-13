@@ -2,13 +2,12 @@ import CateringServices from "./CateringServices";
 import Hero from "./Hero";
 import About from "../about/About";
 import MasterChef from "./MasterChef";
-import ReservationSection from "./ReservationSection";
+import Reservation from "./Reservation";
 import Services from "./Services";
 import Menu from "../menu/Menu";
 import TestimonialGuests from "./TestimonialGuests";
 import RecentPosts from "./RecentPosts";
 import Footer from "./Footer";
-
 const Home = () => {
   const yoe = 18;
   const dish = 100;
@@ -22,12 +21,11 @@ const Home = () => {
       <CateringServices />
       <Menu />
       <MasterChef />
-      <ReservationSection />
+      <Reservation />
       <TestimonialGuests />
       <RecentPosts />
       <Footer />
     </article>
   );
 };
-
 export default Home;

@@ -1,26 +1,27 @@
 import { useLocation } from "react-router-dom";
 import AboutHeader from "./AboutHeader";
 import Footer from "../home/Footer";
-
+import main1Img from "../../assets/Img/Main1Img.png";
+import main2Img from "../../assets/Img/Main2Img.png";
 const About = () => {
   let location = useLocation();
   const isAbout = location.pathname === "/about";
   return (
-    <article className="w-full">
+    <main className="w-full">
       {isAbout ? <AboutHeader /> : <></>}
-      <section className="w-full flex flex-col lg:flex-row px-4 sm:px-8 lg:px-20 xl:px-40 py-12 lg:py-20 gap-10 lg:gap-16 items-center overflow-hidden">
+      <article className="w-full flex flex-col lg:flex-row px-4 sm:px-8 lg:px-20 xl:px-40 py-12 lg:py-20 gap-10 lg:gap-16 items-center overflow-hidden">
         <section className="w-full lg:w-1/2 flex gap-4 sm:gap-6 justify-center items-center">
           <div className="w-1/2 h-87.5 sm:h-112.5 lg:h-125 overflow-hidden rounded-lg shadow-lg">
             <img
-              src="/src/assets/Img/Main1Img.png"
-              alt="Chef Image 1"
+              src={main1Img}
+              alt="Chef preparing food in the restaurant"
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
             />
           </div>
           <div className="w-1/2 h-87.5 sm:h-112.5 lg:h-125 overflow-hidden rounded-lg shadow-lg mt-12 sm:mt-16">
             <img
-              src="/src/assets/Img/Main2Img.png"
-              alt="Chef Image 2"
+              src={main2Img}
+              alt="Restaurant dining area"
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
             />
           </div>
@@ -44,15 +45,13 @@ const About = () => {
             Mon - Sun{" "}
             <span className="font-bold text-gray-900">11 AM - 10 PM</span>
           </p>
-          <p className="text-yellow-600 font-bold text-2xl sm:text-4xl lg:text-5xl tracking-wide">
+          <a href="tel:+15550123456" className="text-yellow-800 text-3xl sm:text-4xl lg:text-5xl font-extrabold">
             +1 (555) 012-3456
-          </p>
+          </a>
         </section>
-      </section>
-
+      </article>
       {isAbout ? <Footer /> : <></>}
-    </article>
+    </main>
   );
 };
-
 export default About;
