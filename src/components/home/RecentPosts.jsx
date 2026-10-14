@@ -1,10 +1,5 @@
 import { MessageCircle } from "lucide-react";
-import rp1 from "../../assets/Img/rp1.png";
-import rp2 from "../../assets/Img/rp2.png";
-import rp3 from "../../assets/Img/rp3.png";
-import rp4 from "../../assets/Img/rp4.png";
-import rp5 from "../../assets/Img/rp5.png";
-import rp6 from "../../assets/Img/rp6.png";
+import { rp1, rp2, rp3 } from "../../assets/cloudinaryImages.js";
 const RecentPosts = () => {
   const posts = [
     {
@@ -31,30 +26,6 @@ const RecentPosts = () => {
       date: "Apr. 20, 2026",
       cn: 3,
     },
-    {
-      name: "REBACA WELSON",
-      image: rp4,
-      alt: "P4",
-      description: "How Our Pastry Corner Bakes Every Morning",
-      date: "Mar. 06, 2026",
-      cn: 3,
-    },
-    {
-      name: "KHARL BRANYT",
-      image: rp5,
-      alt: "P5",
-      description: "Five Alcohol-Free Drinks Worth Ordering",
-      date: "Feb. 19, 2026",
-      cn: 3,
-    },
-    {
-      name: "JOHN SMOOTH",
-      image: rp6,
-      alt: "P6",
-      description: "Planning a Private Dinner With Us",
-      date: "Feb. 19, 2026",
-      cn: 3,
-    },
   ];
   return (
     <article className="w-full min-h-screen flex flex-col justify-center items-center py-16 px-4 sm:px-6 lg:px-20">
@@ -62,10 +33,10 @@ const RecentPosts = () => {
         Recent Posts
       </h2>
       <section className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
-        {posts.slice(0, 3).map((p, index) => {
+        {posts.map((p) => {
           return (
             <div
-              key={index}
+              key={p.image}
               className="w-full max-w-sm flex flex-col bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300"
             >
               <div className="w-full h-64 overflow-hidden">

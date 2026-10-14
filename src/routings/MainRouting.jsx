@@ -1,11 +1,14 @@
+import { lazy } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "../App";
-import Home from "../components/home/Home";
-import About from "../components/about/About";
-import Menu from "../components/menu/Menu";
-import Stories from "../components/stories/Stories";
-import Contact from "../components/contact/Contact";
-import BookAtable from "../components/booking/BookAtable";
+const Home = lazy(() => import("../components/home/Home.jsx"));
+const About = lazy(() => import("../components/about/About.jsx"));
+const Menu = lazy(() => import("../components/menu/Menu.jsx"));
+const Stories = lazy(() => import("../components/stories/Stories.jsx"));
+const Contact = lazy(() => import("../components/contact/Contact.jsx"));
+const BookAtable = lazy(() =>
+  import("../components/booking/BookAtable.jsx"),
+);
 const allRoutes = createBrowserRouter([
     {
       path: "/",

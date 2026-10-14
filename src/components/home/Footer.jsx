@@ -1,10 +1,5 @@
 import { FaTwitter, FaFacebookF, FaInstagram } from "react-icons/fa";
-import i1 from "../../assets/Img/i1.png";
-import i2 from "../../assets/Img/i2.png";
-import i3 from "../../assets/Img/i3.png";
-import i4 from "../../assets/Img/i4.png";
-import i5 from "../../assets/Img/i5.png";
-import i6 from "../../assets/Img/i6.png";
+import { i1, i2, i3, i4, i5, i6 } from "../../assets/cloudinaryImages.js";
 const Footer = () => {
   const instaImages = [
     {

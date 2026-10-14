@@ -2,12 +2,7 @@ import { useState } from "react";
 import { MessageCircle } from "lucide-react";
 import StoriesHeader from "./StoriesHeader";
 import Footer from "../home/Footer";
-import rp1 from "../../assets/Img/rp1.png";
-import rp2 from "../../assets/Img/rp2.png";
-import rp3 from "../../assets/Img/rp3.png";
-import rp4 from "../../assets/Img/rp4.png";
-import rp5 from "../../assets/Img/rp5.png";
-import rp6 from "../../assets/Img/rp6.png";
+import { rp1, rp2, rp3, rp4, rp5, rp6 } from "../../assets/cloudinaryImages.js";
 const Stories = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 6;

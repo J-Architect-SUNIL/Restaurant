@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
-import hg1 from "../../assets/Img/hg1.png";
-import hg2 from "../../assets/Img/hg2.png";
-import hg3 from "../../assets/Img/hg3.png";
-import hg4 from "../../assets/Img/hg4.png";
+import { hg1, hg2, hg3, hg4 } from "../../assets/cloudinaryImages.js";
 const testimonials = [
   {
     id: 1,
@@ -59,7 +56,7 @@ const TestimonialGuests = () => {
   return (
     <article className="max-w-7xl min-h-screen mx-auto overflow-hidden flex flex-col gap-10 justify-center items-center py-16 px-4 sm:px-6">
       <section className="w-full flex flex-col items-center justify-center text-center mb-6">
-        <p className="text-5xl sm:text-7xl lg:text-9xl text-[#b89552] font-['Great_Vibes']">
+        <p className="text-5xl sm:text-7xl lg:text-9xl text-yellow-600 font-['Great_Vibes']">
           Testimony
         </p>
         <h2 className="font-bold text-3xl sm:text-5xl lg:text-6xl text-gray-900 mt-2">

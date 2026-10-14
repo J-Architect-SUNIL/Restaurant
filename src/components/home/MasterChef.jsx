@@ -1,9 +1,11 @@
 import { useState, useRef } from "react";
 import { FaXTwitter, FaFacebookF, FaInstagram } from "react-icons/fa6";
-import chef1 from "../../assets/Img/chef-1.png";
-import chef2 from "../../assets/Img/chef-2.png";
-import chef3 from "../../assets/Img/chef-3.png";
-import chef4 from "../../assets/Img/chef-4.png";
+import {
+  chef1,
+  chef2,
+  chef3,
+  chef4,
+} from "../../assets/cloudinaryImages.js";
 
 const ChefCard = ({ chef, className, imageContainerClassName }) => (
   <div className={className}>
@@ -24,7 +26,7 @@ const ChefCard = ({ chef, className, imageContainerClassName }) => (
         aria-label={`Visit ${chef.name} on X`}
       >
         <FaXTwitter
-          className="w-5 h-5 cursor-pointer hover:text-[#b89552] transition-colors"
+          className="w-5 h-5 cursor-pointer hover:text-yellow-600 transition-colors"
           aria-hidden="true"
         />
       </a>
@@ -35,7 +37,7 @@ const ChefCard = ({ chef, className, imageContainerClassName }) => (
         aria-label={`Visit ${chef.name} on Facebook`}
       >
         <FaFacebookF
-          className="w-5 h-5 cursor-pointer hover:text-[#b89552] transition-colors"
+          className="w-5 h-5 cursor-pointer hover:text-yellow-600 transition-colors"
           aria-hidden="true"
         />
       </a>
@@ -46,7 +48,7 @@ const ChefCard = ({ chef, className, imageContainerClassName }) => (
         aria-label={`Visit ${chef.name} on Instagram`}
       >
         <FaInstagram
-          className="w-5 h-5 cursor-pointer hover:text-[#b89552] transition-colors"
+          className="w-5 h-5 cursor-pointer hover:text-yellow-600 transition-colors"
           aria-hidden="true"
         />
       </a>
@@ -56,7 +58,6 @@ const ChefCard = ({ chef, className, imageContainerClassName }) => (
 
 const MasterChef = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [showAllDesktop, setShowAllDesktop] = useState(false);
   const scrollRef = useRef(null);
   const chef = [
     {
@@ -84,7 +85,6 @@ const MasterChef = () => {
       designation: "Chef",
     },
   ];
-  const visibleChefsDesktop = showAllDesktop ? chef : chef.slice(0, 4);
   const handleScroll = () => {
     if (scrollRef.current) {
       const { scrollLeft, clientWidth } = scrollRef.current;
@@ -105,7 +105,7 @@ const MasterChef = () => {
   return (
     <article className="w-full flex flex-col items-center gap-10 sm:gap-16 py-12 px-4 sm:px-8 lg:px-16 overflow-hidden">
       <section className="w-full flex flex-col items-center justify-center text-center">
-        <p className="text-5xl sm:text-7xl lg:text-9xl text-[#b89552] font-['Great_Vibes']">
+        <p className="text-5xl sm:text-7xl lg:text-9xl text-yellow-600 font-['Great_Vibes']">
           Chef
         </p>
         <h2 className="font-bold text-3xl sm:text-5xl lg:text-6xl text-gray-900 mt-2 sm:mt-0">
@@ -148,7 +148,7 @@ const MasterChef = () => {
           ))}
         </div>
         <div className="hidden lg:grid grid-cols-4 gap-8 lg:gap-10 justify-items-center">
-          {visibleChefsDesktop.map((item) => (
+          {chef.map((item) => (
             <ChefCard
               key={item.name}
               chef={item}
@@ -157,16 +157,6 @@ const MasterChef = () => {
             />
           ))}
         </div>
-        {chef.length > 4 && (
-          <div className="hidden lg:flex justify-center mt-10">
-            <button
-              onClick={() => setShowAllDesktop(!showAllDesktop)}
-              className="px-6 py-2.5 bg-[#b89552] text-white font-medium rounded-md hover:bg-[#a38243] transition-colors shadow-sm"
-            >
-              {showAllDesktop ? "Show Less" : `See All (${chef.length})`}
-            </button>
-          </div>
-        )}
       </div>
     </article>
   );

@@ -5,7 +5,25 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>restaurant</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <!-- Preconnect to external font servers -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Asynchronous non-blocking font loading -->
+    <link 
+      rel="preload" 
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" 
+      as="style" 
+      onload="this.onload=null;this.rel='stylesheet'"
+    >
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap">
+    </noscript>
+
+    <!-- ADD THESE: Preload your primary entry points to flatten the dependency tree -->
+    <link rel="modulepreload" href="/src/main.jsx" />
+    <link rel="modulepreload" href="/src/routings/MainRouting.jsx" />
   </head>
   <body>
     <div id="root"></div>

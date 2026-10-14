@@ -1,12 +1,14 @@
 import { Link, useLocation } from "react-router-dom";
 import MenuHeader from "./MenuHeader";
 import Footer from "../home/Footer";
-import breakfast1 from "../../assets/Img/breakfast-1.jpg";
-import breakfast2 from "../../assets/Img/breakfast-2.jpg";
-import breakfast3 from "../../assets/Img/breakfast-3.jpg";
-import breakfast5 from "../../assets/Img/breakfast-5.png";
-import breakfast6 from "../../assets/Img/breakfast-6.png";
-import breakfast7 from "../../assets/Img/breakfast-7.png";
+import {
+  breakfast1,
+  breakfast2,
+  breakfast3,
+  breakfast5,
+  breakfast6,
+  breakfast7,
+} from "../../assets/cloudinaryImages.js";
 const Menu = () => {
   const location = useLocation();
   const isMenu = location.pathname === "/menu";
@@ -66,7 +68,7 @@ const Menu = () => {
       <section className="w-full min-h-screen flex flex-col items-center gap-10 sm:gap-16 py-12 px-4 sm:px-8 lg:px-16 overflow-hidden">
         {location.pathname === "/" ? 
         <section className="w-full flex flex-col items-center justify-center text-center">
-          <p className="text-5xl sm:text-7xl lg:text-9xl text-[#b89552] font-['Great_Vibes']">
+          <p className="text-5xl sm:text-7xl lg:text-9xl text-yellow-600 font-['Great_Vibes']">
             Specialities
           </p>
           <h2 className="font-bold text-3xl sm:text-5xl lg:text-6xl text-gray-900 mt-2 sm:mt-0">
@@ -104,7 +106,7 @@ const Menu = () => {
                       <h3 className="font-bold text-lg sm:text-xl lg:text-2xl text-gray-900 leading-tight">
                         {item.content}
                       </h3>
-                      <p className="text-[#b89552] font-bold text-lg sm:text-xl shrink-0">
+                      <p className="text-yellow-600 font-bold text-lg sm:text-xl shrink-0">
                         ₹{item.price.toLocaleString("en-IN")}
                       </p>
                     </div>

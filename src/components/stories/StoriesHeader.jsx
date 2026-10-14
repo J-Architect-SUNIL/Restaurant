@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import bg1 from "../../assets/Img/bg_1.jpg";
+import { bg1 } from "../../assets/cloudinaryImages.js";
 const StoriesHeader = () => {
   return (
     <section className="relative w-full h-64 sm:h-80 lg:h-96 bg-black flex flex-col justify-end items-center pb-12 overflow-hidden">

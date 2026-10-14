@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import React, { useRef, useState, useMemo } from "react";
 import {
   motion,
   useReducedMotion,
@@ -7,42 +7,70 @@ import {
   useSpring,
 } from "framer-motion";
 import { NavLink } from "react-router-dom";
-import bg3 from "../../assets/Img/bg_3.png";
+import { bg3 } from "../../assets/cloudinaryImages.js";
+
+// Hoisted static date calculation to prevent re-running on every render
+const getMinDate = () => {
+  const today = new Date();
+  return `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(
+    2,
+    "0"
+  )}-${String(today.getDate()).padStart(2, "0")}`;
+};
+
 const Reservation = () => {
   const articleRef = useRef(null);
   const [submissionMessage, setSubmissionMessage] = useState("");
   const shouldReduceMotion = useReducedMotion();
-  const today = new Date();
-  const minDate = `${today.getFullYear()}-${String(
-    today.getMonth() + 1,
-  ).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+  const minDate = useMemo(() => getMinDate(), []);
+
   const { scrollYProgress } = useScroll({
     target: articleRef,
     offset: ["start end", "end start"],
   });
+
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 35,
     damping: 20,
   });
-  const floatY = useTransform(smoothProgress, [0, 1], ["40px", "-40px"]);
+
+  // Parallax background layer movement (moves slower than scroll for depth)
+  const bgY = useTransform(smoothProgress, [0, 1], ["-15%", "15%"]);
+  
+  // Floating motion for the form container
+  const floatY = useTransform(smoothProgress, [0, 1], ["30px", "-30px"]);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     setSubmissionMessage(
-      "Online reservations are not available yet, so no reservation was sent. Please call us to book.",
+      "Online reservations are not available yet, so no reservation was sent. Please call us to book."
     );
   };
+
   return (
     <article
       ref={articleRef}
-      className="relative min-h-screen w-full overflow-hidden bg-cover bg-center flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8"
-      style={{
-        backgroundImage: `url(${bg3})`,
-        backgroundAttachment: "fixed",
-      }}
+      className="relative min-h-screen w-full overflow-hidden flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8"
     >
+      {/* GPU-Accelerated Parallax Background Layer */}
+      <motion.div
+        style={{ y: shouldReduceMotion ? 0 : bgY }}
+        className="absolute inset-[-20%] -z-20 bg-cover bg-center scale-110"
+        aria-hidden="true"
+      >
+        <div
+          className="w-full h-full bg-cover bg-center"
+          style={{ backgroundImage: `url(${bg3})` }}
+        />
+      </motion.div>
+
+      {/* Dark overlay for contrast and readability */}
+      <div className="absolute inset-0 -z-10 bg-black/40" aria-hidden="true" />
+
+      {/* Floating Form Container */}
       <motion.section
         style={{ y: shouldReduceMotion ? 0 : floatY }}
-        className="w-full max-w-4xl flex items-center justify-center"
+        className="w-full max-w-4xl flex items-center justify-center z-10"
       >
         <form
           onSubmit={handleSubmit}
@@ -151,16 +179,11 @@ const Reservation = () => {
                   className="w-full h-11 sm:h-12 px-4 border border-gray-300 rounded text-sm sm:text-base bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-600 focus-visible:ring-offset-1"
                 >
                   <option value="">Select number of guests</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
+                  {[...Array(10)].map((_, i) => (
+                    <option key={i + 1} value={i + 1}>
+                      {i + 1}
+                    </option>
+                  ))}
                 </select>
                 <p className="text-sm text-gray-600">
                   For parties of more than 10, please{" "}
@@ -197,4 +220,5 @@ const Reservation = () => {
     </article>
   );
 };
-export default Reservation;
+
+export default React.memo(Reservation);
