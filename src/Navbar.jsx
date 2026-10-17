@@ -4,11 +4,11 @@ import { Menu, X } from "lucide-react";
 
 const NAV_ITEMS = [
   { path: "/", label: "Home" },
-  { path: "/about", label: "About" },
-  { path: "/menu", label: "Menu" },
-  { path: "/stories", label: "Stories" },
-  { path: "/contact", label: "Contact" },
-  { path: "/bookAtable", label: "Book a Table" },
+  { path: "about", label: "About" },
+  { path: "menu", label: "Menu" },
+  { path: "stories", label: "Stories" },
+  { path: "contact", label: "Contact" },
+  { path: "bookAtable", label: "Book a Table" },
   { path: "/signin", label: "Sign In" },
 ];
 
@@ -25,26 +25,42 @@ const Navbar = React.memo(() => {
 
   const getNavLinkClass = useCallback(
     ({ isActive }) =>
-      isActive
-        ? "text-yellow-500 font-medium"
-        : "hover:text-yellow-500 transition-colors",
+      [
+        "transition-colors",
+        "hover:text-yellow-500",
+        "focus-visible:outline",
+        "focus-visible:outline-2",
+        "focus-visible:outline-offset-4",
+        isActive ? "text-yellow-500 font-medium" : "",
+      ]
+        .filter(Boolean)
+        .join(" "),
     []
   );
 
   return (
-    <section className="w-full flex flex-wrap lg:flex-nowrap justify-between items-center px-4 sm:px-8 py-3 lg:py-4 z-30 absolute top-15 sm:top-12 lg:top-10 left-0 right-0 text-white bg-black/40 lg:bg-transparent">
+    <section className="absolute top-15 sm:top-12 lg:top-10 left-0 right-0 z-30 flex flex-wrap lg:flex-nowrap justify-between items-center px-4 sm:px-8 py-3 lg:py-4 text-white bg-black/40 lg:bg-transparent">
       <p className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold tracking-wide">
         Feliciano
       </p>
+      
       <button
+        type="button"
         onClick={toggleMenu}
-        className="lg:hidden text-white hover:text-yellow-500 focus:outline-none p-1 transition-colors"
-        aria-label="Toggle navigation menu"
+        className="lg:hidden p-1 text-white transition-colors hover:text-yellow-500 focus-visible:outline focus-visible:outline-offset-2 cursor-pointer"
+        aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+        aria-expanded={isMenuOpen}
+        aria-controls="primary-navigation"
       >
-        {isMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
+        {isMenuOpen ? (
+          <X className="h-7 w-7" aria-hidden="true" />
+        ) : (
+          <Menu className="h-7 w-7" aria-hidden="true" />
+        )}
       </button>
 
       <nav
+        id="primary-navigation"
         className={`${
           isMenuOpen ? "flex" : "hidden"
         } lg:flex flex-col lg:flex-row w-full lg:w-auto items-center gap-4 lg:gap-8 text-sm sm:text-base lg:text-lg mt-4 lg:mt-0 py-4 lg:py-0 bg-black/80 lg:bg-transparent rounded-lg lg:rounded-none transition-all duration-300`}

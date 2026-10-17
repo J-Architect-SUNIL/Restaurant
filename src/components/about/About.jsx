@@ -14,14 +14,16 @@ const About = () => {
             <img
               src={main1Img}
               alt="Chef preparing food in the restaurant"
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+              className="w-full h-full object-cover transition-transform duration-500 hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
             />
           </div>
           <div className="w-1/2 h-87.5 sm:h-112.5 lg:h-125 overflow-hidden rounded-lg shadow-lg mt-12 sm:mt-16">
             <img
               src={main2Img}
               alt="Restaurant dining area"
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+              className="w-full h-full object-cover transition-transform duration-500 hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
             />
           </div>
         </section>

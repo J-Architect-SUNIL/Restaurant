@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import { MessageCircle } from "lucide-react";
 import { rp1, rp2, rp3 } from "../../assets/cloudinaryImages.js";
 const RecentPosts = () => {
@@ -5,7 +6,7 @@ const RecentPosts = () => {
     {
       name: "REBACA WELSON",
       image: rp1,
-      alt: "P1",
+      alt: "Bartender pouring a drink into a glass",
       description: "Our New Terrace Opens for the Season",
       date: "Apr. 18, 2026",
       cn: 3,
@@ -13,18 +14,18 @@ const RecentPosts = () => {
     {
       name: "JOHN SMOOTH",
       image: rp2,
-      alt: "P2",
-      description: "Our New Terrace Opens for the Season",
+      alt: "Dimly lit restaurant interior with a bar",
+      description: "Meet Our Bar Team and Their Spring Cocktails",
       date: "Apr. 02, 2026",
-      cn: 3,
+      cn: 9,
     },
     {
       name: "LUKE SIMON",
       image: rp3,
-      alt: "P3",
-      description: "Our New Terrace Opens for the Season",
+      alt: "Pastry chef holding a slice of layered cake",
+      description: "Behind the Scenes on a Busy Friday Night",
       date: "Apr. 20, 2026",
-      cn: 3,
+      cn: 5,
     },
   ];
   return (
@@ -49,18 +50,21 @@ const RecentPosts = () => {
               <div className="flex flex-col p-6 gap-4 flex-1 justify-between">
                 <div className="flex flex-col gap-2">
                   <div className="flex gap-3 text-xs sm:text-sm text-gray-400 font-medium tracking-wider uppercase">
-                    <span>{p.date}</span>
+                    <time dateTime="2026-04-18">{p.date}</time>
                     <span>•</span>
                     <span>{p.name}</span>
                   </div>
-                  <p className="text-xl sm:text-2xl font-bold text-gray-900 leading-snug">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 leading-snug">
                     {p.description}
-                  </p>
+                  </h3>
                 </div>
                 <div className="flex justify-between items-center pt-4 border-t border-gray-100 text-sm font-medium">
-                  <button className="text-yellow-600 hover:text-yellow-700 transition-colors">
+                  <NavLink
+                    to={p.href}
+                    className="text-yellow-600 hover:text-yellow-700 transition-colors"
+                  >
                     Read more →
-                  </button>
+                  </NavLink>
                   <div className="flex items-center gap-1.5 text-gray-500">
                     <MessageCircle className="w-4 h-4" />
                     <span>{p.cn}</span>

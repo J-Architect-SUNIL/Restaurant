@@ -4,27 +4,27 @@ const Footer = () => {
   const instaImages = [
     {
       src: i1,
-      alt: "Insta 1",
+      alt: "",
     },
     {
       src: i2,
-      alt: "Insta 2",
+      alt: "",
     },
     {
       src: i3,
-      alt: "Insta 3",
+      alt: "",
     },
     {
       src: i4,
-      alt: "Insta 4",
+      alt: "",
     },
     {
       src: i5,
-      alt: "Insta 5",
+      alt: "",
     },
     {
       src: i6,
-      alt: "Insta 6",
+      alt: "",
     },
   ];
   const openingHours = [
@@ -38,6 +38,7 @@ const Footer = () => {
   ];
   const handleSubscribe = (event) => {
     event.preventDefault();
+    setLoading(true);
   };
   return (
     <footer className="w-full bg-black text-white flex flex-col justify-between py-16 px-4 sm:px-8 md:px-16 overflow-hidden">
@@ -135,7 +136,7 @@ const Footer = () => {
             />
             <button
               type="submit"
-              className="bg-[#c49b66] hover:bg-[#b08855] text-black font-medium text-sm py-3 rounded transition-colors"
+              className="bg-[#c49b66] hover:bg-[#b08855] text-black font-medium text-sm py-3 rounded transition-colors focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-white cursor-pointer"
             >
               Subscribe
             </button>
