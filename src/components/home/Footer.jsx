@@ -1,35 +1,30 @@
 import { FaTwitter, FaFacebookF, FaInstagram } from "react-icons/fa";
-import i1 from "../../assets/Img/i1.png";
-import i2 from "../../assets/Img/i2.png";
-import i3 from "../../assets/Img/i3.png";
-import i4 from "../../assets/Img/i4.png";
-import i5 from "../../assets/Img/i5.png";
-import i6 from "../../assets/Img/i6.png";
+import { i1, i2, i3, i4, i5, i6 } from "../../assets/cloudinaryImages.js";
 const Footer = () => {
   const instaImages = [
     {
       src: i1,
-      alt: "Insta 1",
+      alt: "",
     },
     {
       src: i2,
-      alt: "Insta 2",
+      alt: "",
     },
     {
       src: i3,
-      alt: "Insta 3",
+      alt: "",
     },
     {
       src: i4,
-      alt: "Insta 4",
+      alt: "",
     },
     {
       src: i5,
-      alt: "Insta 5",
+      alt: "",
     },
     {
       src: i6,
-      alt: "Insta 6",
+      alt: "",
     },
   ];
   const openingHours = [
@@ -43,6 +38,7 @@ const Footer = () => {
   ];
   const handleSubscribe = (event) => {
     event.preventDefault();
+    setLoading(true);
   };
   return (
     <footer className="w-full bg-black text-white flex flex-col justify-between py-16 px-4 sm:px-8 md:px-16 overflow-hidden">
@@ -140,7 +136,7 @@ const Footer = () => {
             />
             <button
               type="submit"
-              className="bg-[#c49b66] hover:bg-[#b08855] text-black font-medium text-sm py-3 rounded transition-colors"
+              className="bg-[#c49b66] hover:bg-[#b08855] text-black font-medium text-sm py-3 rounded transition-colors focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-white cursor-pointer"
             >
               Subscribe
             </button>

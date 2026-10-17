@@ -1,8 +1,7 @@
 import { useLocation } from "react-router-dom";
 import AboutHeader from "./AboutHeader";
 import Footer from "../home/Footer";
-import main1Img from "../../assets/Img/Main1Img.png";
-import main2Img from "../../assets/Img/Main2Img.png";
+import { main1Img, main2Img } from "../../assets/cloudinaryImages.js";
 const About = () => {
   let location = useLocation();
   const isAbout = location.pathname === "/about";
@@ -15,20 +14,22 @@ const About = () => {
             <img
               src={main1Img}
               alt="Chef preparing food in the restaurant"
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+              className="w-full h-full object-cover transition-transform duration-500 hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
             />
           </div>
           <div className="w-1/2 h-87.5 sm:h-112.5 lg:h-125 overflow-hidden rounded-lg shadow-lg mt-12 sm:mt-16">
             <img
               src={main2Img}
               alt="Restaurant dining area"
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+              className="w-full h-full object-cover transition-transform duration-500 hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
             />
           </div>
         </section>
         <section className="w-full lg:w-1/2 flex flex-col justify-center text-center lg:text-left gap-4 sm:gap-6">
           <div>
-            <p className="text-5xl sm:text-7xl lg:text-8xl text-[#b89552] font-['Great_Vibes'] mb-2">
+            <p className="text-5xl sm:text-7xl lg:text-8xl text-yellow-600 font-['Great_Vibes'] mb-2">
               About
             </p>
             <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight text-gray-900">
