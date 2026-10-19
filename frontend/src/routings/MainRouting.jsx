@@ -15,6 +15,8 @@ const Contact = lazy(() => import("../components/contact/Contact.jsx"));
 const BookAtable = lazy(() =>
   import("../components/booking/BookAtable.jsx")
 );
+const SignIn = lazy(() => import("../components/auth/SignIn.jsx"));
+const SignUp = lazy(() => import("../components/auth/SignUp.jsx"));
 
 function RouteErrorBoundary() {
   const error = useRouteError();
@@ -46,6 +48,8 @@ const allRoutes = createBrowserRouter([
       { path: "stories", element: <Stories /> },
       { path: "contact", element: <Contact /> },
       { path: "bookAtable", element: <BookAtable /> },
+      { path: "signin", element: <SignIn /> },
+      { path: "signup", element: <SignUp /> },
     ],
   },
 ]);
