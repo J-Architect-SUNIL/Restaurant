@@ -4,12 +4,12 @@ import { Menu, X } from "lucide-react";
 
 const NAV_ITEMS = [
   { path: "/", label: "Home" },
-  { path: "/about", label: "About" },
-  { path: "/menu", label: "Menu" },
-  { path: "/stories", label: "Stories" },
-  { path: "/contact", label: "Contact" },
-  { path: "/bookAtable", label: "Book a Table" },
-  { path: "/signin", label: "Sign In" },
+  { path: "about", label: "About" },
+  { path: "menu", label: "Menu" },
+  { path: "stories", label: "Stories" },
+  { path: "contact", label: "Contact" },
+  { path: "bookAtable", label: "Book a Table" },
+  { path: "signin", label: "Sign In" },
 ];
 
 const Navbar = React.memo(() => {
