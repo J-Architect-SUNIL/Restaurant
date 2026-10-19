@@ -51,7 +51,7 @@ const Contact = () => {
               <div className="mt-2">
                 <button
                   type="submit"
-                  className="px-8 py-4 bg-[#c8a97e] text-white font-medium text-sm rounded-md hover:bg-[#b5966a] transition-colors shadow-xs"
+                  className="px-8 py-4 bg-[#c8a97e] text-white font-medium text-sm rounded-md hover:bg-[#b5966a] transition-colors shadow-xs cursor-pointer"
                 >
                   Send Message
                 </button>

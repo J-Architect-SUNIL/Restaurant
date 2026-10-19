@@ -1,8 +1,9 @@
 import React from "react";
 
 const FoodCard = React.memo(({ image, name, ingredients }) => {
+  if (!image || !name) return null;
   return (
-    <div className="card flex flex-col justify-center items-center text-center gap-1 sm:gap-2">
+    <div className="flex flex-col justify-center items-center text-center gap-1 sm:gap-2">
       <img
         src={image}
         alt={name}

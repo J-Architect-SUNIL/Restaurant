@@ -74,7 +74,7 @@ const CateringServices = () => {
             <button
               key={`service-dot-${index}`}
               onClick={() => scrollToSlide(index)}
-              className={`h-2.5 rounded-full transition-all duration-300 ${
+              className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
                 activeIndex === index
                   ? "w-8 bg-[#C8A97E]"
                   : "w-2.5 bg-gray-300 hover:bg-gray-400"

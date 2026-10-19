@@ -82,10 +82,11 @@ const Hero = () => {
           <img
             key={slide.id}
             src={slide.image}
-            alt={slide.title}
+            alt=""
+            aria-hidden="true"
             fetchPriority={index === 0 ? "high" : "low"}
             loading={index === 0 ? "eager" : "lazy"}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out motion-reduce:transition-none ${
               index === currentIndex ? "opacity-50" : "opacity-0"
             }`}
           />
@@ -94,22 +95,33 @@ const Hero = () => {
       </div>
 
       <section className="w-full flex-1 flex justify-between items-center px-4 sm:px-8 mt-auto mb-auto lg:my-auto z-10">
-        <ChevronLeft
+        <button
+          type="button"
           onClick={handlePrev}
-          className="w-6 h-6 sm:w-10 sm:h-10 cursor-pointer hover:text-yellow-500 transition-colors shrink-0"
-        />
+          aria-label="Previous slide"
+          className="rounded-full p-2 hover:text-yellow-500 focus-visible:outline focus-visible:outline-white"
+        >
+          <ChevronLeft aria-hidden="true" className="w-6 h-6 sm:w-10 sm:h-10" />
+        </button>
         <div className="flex flex-col justify-center items-center text-center gap-2 sm:gap-4 px-2">
           <p className="font-['Great_Vibes'] text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-yellow-500">
             Feliciano
           </p>
-          <p className="font-serif text-2xl sm:text-4xl md:text-5xl lg:text-6xl tracking-widest font-light uppercase transition-all duration-300">
+          <h2 className="font-serif text-2xl sm:text-4xl md:text-5xl lg:text-6xl tracking-widest font-light uppercase transition-all duration-300">
             {HERO_SLIDES[currentIndex].title}
-          </p>
+          </h2>
         </div>
-        <ChevronRight
+        <button
+          type="button"
           onClick={handleNext}
-          className="w-6 h-6 sm:w-10 sm:h-10 cursor-pointer hover:text-yellow-500 transition-colors shrink-0"
-        />
+          aria-label="Next slide"
+          className="rounded-full p-2 hover:text-yellow-500 focus-visible:outline focus-visible:outline-white"
+        >
+          <ChevronRight
+            aria-hidden="true"
+            className="w-6 h-6 sm:w-10 sm:h-10"
+          />
+        </button>
       </section>
 
       <hr className="border-gray-600/60 w-[90%] sm:w-[95%] mx-auto my-4 lg:my-6" />

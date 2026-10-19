@@ -18,7 +18,7 @@ const Home = () => {
   const guest = 15000;
 
   return (
-    <article className="w-full h-full">
+    <main className="w-full h-full">
       <Hero />
       <About />
       <Suspense fallback={<div className="min-h-50" />}>
@@ -31,7 +31,7 @@ const Home = () => {
         <RecentPosts />
         <Footer />
       </Suspense>
-    </article>
+    </main>
   );
 };
 
