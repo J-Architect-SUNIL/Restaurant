@@ -73,7 +73,9 @@ const TestimonialGuests = () => {
           {testimonials.map((item) => (
             <div
               key={item.id}
-              className="w-full sm:w-1/2 lg:w-1/3 shrink-0 px-4 text-center flex flex-col items-center justify-between"
+              // className="w-full sm:w-1/2 lg:w-1/3 shrink-0 px-4 text-center flex flex-col items-center justify-between"
+              className="box-border shrink-0 px-4 text-center flex flex-col items-center justify-between"
+              style={{ width: `${100 / visibleCount}%` }}
             >
               <div className="relative inline-block mb-8">
                 <img
@@ -110,12 +112,15 @@ const TestimonialGuests = () => {
             type="button"
             onClick={() => setActiveIndex(index)}
             aria-label={`Go to testimonial by ${item.name}`}
-            aria-current={currentIndex === index ? "true" : undefined}
-            className={`h-2.5 rounded-full transition-all duration-300 ${
-              currentIndex === index
-                ? "w-8 bg-[#c49a6c]"
-                : "w-2.5 bg-gray-300 hover:bg-gray-400"
-            }`}
+            aria-pressed={currentIndex === index}
+            className={`h-2.5 rounded-full transition-all duration-300
+    focus-visible:outline
+    focus-visible:outline-offset-2 focus-visible:outline-gray-900
+    ${
+      currentIndex === index
+        ? "w-8 bg-[#c49a6c]"
+        : "w-2.5 bg-gray-300 hover:bg-gray-400"
+    }`}
           />
         ))}
       </div>

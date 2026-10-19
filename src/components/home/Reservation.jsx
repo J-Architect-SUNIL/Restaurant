@@ -200,7 +200,7 @@ const Reservation = () => {
           </div>
           <button
             type="submit"
-            className="w-full sm:w-72 h-12 sm:h-14 text-base sm:text-lg font-medium bg-yellow-600 text-white rounded border border-yellow-600 hover:bg-white hover:text-yellow-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-600 focus-visible:ring-offset-2 transition-colors duration-1000 mt-2"
+            className="w-full sm:w-72 h-12 sm:h-14 text-base sm:text-lg font-medium bg-yellow-600 text-white rounded border border-yellow-600 hover:bg-white hover:text-yellow-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-600 focus-visible:ring-offset-2 transition-colors duration-1000 mt-2 cursor-pointer"
           >
             Make a Reservation
           </button>

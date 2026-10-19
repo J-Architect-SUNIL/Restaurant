@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MessageCircle } from "lucide-react";
+import { NavLink } from "react-router-dom";
 import StoriesHeader from "./StoriesHeader";
 import Footer from "../home/Footer";
 import { rp1, rp2, rp3, rp4, rp5, rp6 } from "../../assets/cloudinaryImages.js";
@@ -10,50 +10,44 @@ const Stories = () => {
     {
       name: "REBACA WELSON",
       image: rp1,
-      alt: "P1",
+      alt: "Bartender pouring a drink into a glass",
       description: "Our New Terrace Opens for the Season",
       date: "Apr. 18, 2026",
-      cn: 3,
     },
     {
       name: "JOHN SMOOTH",
       image: rp2,
-      alt: "P2",
+      alt: "Dimly lit restaurant interior with a bar",
       description: "Our New Terrace Opens for the Season",
       date: "Apr. 02, 2026",
-      cn: 3,
     },
     {
       name: "LUKE SIMON",
       image: rp3,
-      alt: "P3",
+      alt: "Pastry chef holding a slice of layered cake",
       description: "Our New Terrace Opens for the Season",
       date: "Apr. 20, 2026",
-      cn: 3,
     },
     {
       name: "REBACA WELSON",
       image: rp4,
-      alt: "P4",
+      alt: "Green cocktail garnished with mint on a wooden counter",
       description: "How Our Pastry Corner Bakes Every Morning",
       date: "Mar. 06, 2026",
-      cn: 3,
     },
     {
       name: "KHARL BRANYT",
       image: rp5,
-      alt: "P5",
+      alt: "Overhead view of a restaurant dining room and tables",
       description: "Five Alcohol-Free Drinks Worth Ordering",
       date: "Feb. 19, 2026",
-      cn: 3,
     },
     {
       name: "JOHN SMOOTH",
       image: rp6,
-      alt: "P6",
+      alt: "Restaurant dining room with tables and pendant lights",
       description: "Planning a Private Dinner With Us",
       date: "Feb. 19, 2026",
-      cn: 3,
     },
   ];
   const indexOfLastPost = currentPage * postsPerPage;
@@ -61,8 +55,10 @@ const Stories = () => {
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
   const totalPages = Math.ceil(posts.length / postsPerPage);
   const handlePageChange = (pageNumber) => {
+    if (pageNumber < 1 || pageNumber > totalPages) return;
+
     setCurrentPage(pageNumber);
-    window.scrollTo({ top: 300, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
   return (
     <article className="w-full min-h-screen flex flex-col justify-between">
@@ -89,52 +85,65 @@ const Stories = () => {
                       <span>•</span>
                       <span>{p.name}</span>
                     </div>
-                    <p className="text-xl sm:text-2xl font-bold text-gray-900 leading-snug">
+                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900 leading-snug">
                       {p.description}
-                    </p>
+                    </h3>
                   </div>
                   <div className="flex justify-between items-center pt-4 border-t border-gray-100 text-sm font-medium">
-                    <button className="text-yellow-600 hover:text-yellow-700 transition-colors">
+                    <NavLink
+                      to={`/stories/${p.slug}`}
+                      className="text-yellow-600 hover:text-yellow-700
+             focus-visible:outline
+             focus-visible:outline-offset-2"
+                    >
                       Read more →
-                    </button>
-                    <div className="flex items-center gap-1.5 text-gray-500">
-                      <MessageCircle className="w-4 h-4" />
-                      <span>{p.cn}</span>
-                    </div>
+                    </NavLink>
                   </div>
                 </div>
               </div>
             ))}
           </section>
-          <div className="flex justify-center items-center gap-2 mt-16">
+          <nav
+            aria-label="Stories pagination"
+            className="flex justify-center items-center gap-2 mt-16"
+          >
             <button
+              type="button"
+              aria-label="Previous page"
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
-              className="w-10 h-10 flex items-center justify-center rounded-lg border border-[#c8a97e] text-[#c8a97e] hover:bg-[#c8a97e] hover:text-white disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-[#c8a97e] transition-colors"
+              className="w-10 h-10 flex items-center justify-center rounded-lg border border-[#c8a97e] text-[#c8a97e] hover:bg-[#c8a97e] hover:text-white disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-[#c8a97e] transition-colors cursor-pointer disabled:cursor-not-allowed"
             >
               &lt;
             </button>
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((number) => (
-              <button
-                key={number}
-                onClick={() => handlePageChange(number)}
-                className={`w-10 h-10 flex items-center justify-center rounded-lg border border-[#c8a97e] text-sm font-medium transition-colors ${
-                  currentPage === number
-                    ? "bg-[#c8a97e] text-white"
-                    : "bg-white text-[#c8a97e] hover:bg-[#c8a97e]/10"
-                }`}
-              >
-                {number}
-              </button>
-            ))}
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+              (number) => (
+                <button
+                  key={number}
+                  type="button"
+                  aria-label={`Page ${number}`}
+                  aria-current={currentPage === number ? "page" : undefined}
+                  onClick={() => handlePageChange(number)}
+                  className={`w-10 h-10 flex items-center justify-center rounded-lg border border-[#c8a97e] text-sm font-medium transition-colors cursor-pointer ${
+                    currentPage === number
+                      ? "bg-[#c8a97e] text-white"
+                      : "bg-white text-[#c8a97e] hover:bg-[#c8a97e]/10"
+                  }`}
+                >
+                  {number}
+                </button>
+              ),
+            )}
             <button
+              type="button"
+              aria-label="Next page"
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
-              className="w-10 h-10 flex items-center justify-center rounded-lg border border-[#c8a97e] text-[#c8a97e] hover:bg-[#c8a97e] hover:text-white disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-[#c8a97e] transition-colors"
+              className="w-10 h-10 flex items-center justify-center rounded-lg border border-[#c8a97e] text-[#c8a97e] hover:bg-[#c8a97e] hover:text-white disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-[#c8a97e] transition-colors cursor-pointer disabled:cursor-not-allowed"
             >
               &gt;
             </button>
-          </div>
+          </nav>
         </section>
       </div>
       <Footer />

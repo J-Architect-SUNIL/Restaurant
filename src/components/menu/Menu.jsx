@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import MenuHeader from "./MenuHeader";
 import Footer from "../home/Footer";
 import {
@@ -80,24 +80,24 @@ const Menu = () => {
       }
         <article className="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 border border-gray-200 rounded-lg overflow-hidden shadow-sm">
           {menuItem.map((item, index) => {
+            const isLastRow = index >= menuItem.length - 2;
+            const isRightColumn = index % 2 === 1;
+            const isLastItem = index === menuItem.length - 1;
+
             return (
               <div
                 key={item.content}
                 className={`w-full flex flex-col ${
                   item.imageFirst ? "lg:flex-row" : "lg:flex-row-reverse"
-                } ${
-                  index < menuItem.length - 1 ? "border-b" : ""
-                } ${
-                  index < menuItem.length - 2 ? "lg:border-b" : ""
-                } ${
-                  index % 2 === 0 ? "lg:border-r" : ""
-                } border-gray-200 min-h-70`}
+                } ${!isLastItem ? "border-b" : ""} ${
+                  isLastRow ? "lg:border-b-0" : "lg:border-b"
+                } ${!isRightColumn ? "lg:border-r" : ""} border-gray-200 min-h-70`}
               >
                 <div className="w-full lg:w-1/2 h-48 sm:h-64 lg:h-auto overflow-hidden shrink-0">
                   <img
                     src={item.image}
                     alt={item.alt}
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
                   />
                 </div>
                 <div className="w-full lg:w-1/2 flex flex-col justify-between p-5 sm:p-6 lg:p-8 bg-white gap-4">
@@ -114,12 +114,12 @@ const Menu = () => {
                       {item.description}
                     </p>
                   </div>
-                  <Link
+                  <NavLink
                     to="/bookAtable"
-                    className="flex items-center justify-center w-full sm:w-36 h-10 sm:h-12 rounded bg-yellow-600 text-white font-medium hover:text-yellow-600 hover:bg-white border border-yellow-600 transition-colors text-sm sm:text-base duration-1000"
+                    className="flex items-center justify-center w-full sm:w-36 h-10 sm:h-12 rounded border border-yellow-600 bg-yellow-600 text-white font-medium hover:bg-white hover:text-yellow-600 transition-colors focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-yellow-700"
                   >
                     Book now
-                  </Link>
+                  </NavLink>
                 </div>
               </div>
             );

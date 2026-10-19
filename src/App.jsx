@@ -1,18 +1,19 @@
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import TopHeader from "./TopHeader";
 import Navbar from "./Navbar";
 
 const App = () => {
   return (
-    <main className="relative w-full min-h-screen text-black overflow-x-hidden">
+    <div className="relative w-full min-h-screen text-black overflow-x-hidden">
       <TopHeader />
       <Navbar />
       <Suspense
         fallback={
           <div
-            className="min-h-screen flex items-center justify-center"
+            className="flex min-h-[50vh] items-center justify-center"
             role="status"
+            aria-live="polite"
           >
             Loading page...
           </div>
@@ -20,8 +21,8 @@ const App = () => {
       >
         <Outlet />
       </Suspense>
-    </main>
+    </div>
   );
 };
 
-export default React.memo(App);
+export default App;
