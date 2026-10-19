@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
-import hg1 from "../../assets/Img/hg1.png";
-import hg2 from "../../assets/Img/hg2.png";
-import hg3 from "../../assets/Img/hg3.png";
-import hg4 from "../../assets/Img/hg4.png";
+import { hg1, hg2, hg3, hg4 } from "../../assets/cloudinaryImages.js";
 const testimonials = [
   {
     id: 1,
@@ -59,7 +56,7 @@ const TestimonialGuests = () => {
   return (
     <article className="max-w-7xl min-h-screen mx-auto overflow-hidden flex flex-col gap-10 justify-center items-center py-16 px-4 sm:px-6">
       <section className="w-full flex flex-col items-center justify-center text-center mb-6">
-        <p className="text-5xl sm:text-7xl lg:text-9xl text-[#b89552] font-['Great_Vibes']">
+        <p className="text-5xl sm:text-7xl lg:text-9xl text-yellow-600 font-['Great_Vibes']">
           Testimony
         </p>
         <h2 className="font-bold text-3xl sm:text-5xl lg:text-6xl text-gray-900 mt-2">
@@ -76,7 +73,9 @@ const TestimonialGuests = () => {
           {testimonials.map((item) => (
             <div
               key={item.id}
-              className="w-full sm:w-1/2 lg:w-1/3 shrink-0 px-4 text-center flex flex-col items-center justify-between"
+              // className="w-full sm:w-1/2 lg:w-1/3 shrink-0 px-4 text-center flex flex-col items-center justify-between"
+              className="box-border shrink-0 px-4 text-center flex flex-col items-center justify-between"
+              style={{ width: `${100 / visibleCount}%` }}
             >
               <div className="relative inline-block mb-8">
                 <img
@@ -113,12 +112,15 @@ const TestimonialGuests = () => {
             type="button"
             onClick={() => setActiveIndex(index)}
             aria-label={`Go to testimonial by ${item.name}`}
-            aria-current={currentIndex === index ? "true" : undefined}
-            className={`h-2.5 rounded-full transition-all duration-300 ${
-              currentIndex === index
-                ? "w-8 bg-[#c49a6c]"
-                : "w-2.5 bg-gray-300 hover:bg-gray-400"
-            }`}
+            aria-pressed={currentIndex === index}
+            className={`h-2.5 rounded-full transition-all duration-300
+    focus-visible:outline
+    focus-visible:outline-offset-2 focus-visible:outline-gray-900
+    ${
+      currentIndex === index
+        ? "w-8 bg-[#c49a6c]"
+        : "w-2.5 bg-gray-300 hover:bg-gray-400"
+    }`}
           />
         ))}
       </div>

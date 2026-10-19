@@ -1,12 +1,14 @@
-import { Link, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import MenuHeader from "./MenuHeader";
 import Footer from "../home/Footer";
-import breakfast1 from "../../assets/Img/breakfast-1.jpg";
-import breakfast2 from "../../assets/Img/breakfast-2.jpg";
-import breakfast3 from "../../assets/Img/breakfast-3.jpg";
-import breakfast5 from "../../assets/Img/breakfast-5.png";
-import breakfast6 from "../../assets/Img/breakfast-6.png";
-import breakfast7 from "../../assets/Img/breakfast-7.png";
+import {
+  breakfast1,
+  breakfast2,
+  breakfast3,
+  breakfast5,
+  breakfast6,
+  breakfast7,
+} from "../../assets/cloudinaryImages.js";
 const Menu = () => {
   const location = useLocation();
   const isMenu = location.pathname === "/menu";
@@ -66,7 +68,7 @@ const Menu = () => {
       <section className="w-full min-h-screen flex flex-col items-center gap-10 sm:gap-16 py-12 px-4 sm:px-8 lg:px-16 overflow-hidden">
         {location.pathname === "/" ? 
         <section className="w-full flex flex-col items-center justify-center text-center">
-          <p className="text-5xl sm:text-7xl lg:text-9xl text-[#b89552] font-['Great_Vibes']">
+          <p className="text-5xl sm:text-7xl lg:text-9xl text-yellow-600 font-['Great_Vibes']">
             Specialities
           </p>
           <h2 className="font-bold text-3xl sm:text-5xl lg:text-6xl text-gray-900 mt-2 sm:mt-0">
@@ -78,24 +80,24 @@ const Menu = () => {
       }
         <article className="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 border border-gray-200 rounded-lg overflow-hidden shadow-sm">
           {menuItem.map((item, index) => {
+            const isLastRow = index >= menuItem.length - 2;
+            const isRightColumn = index % 2 === 1;
+            const isLastItem = index === menuItem.length - 1;
+
             return (
               <div
                 key={item.content}
                 className={`w-full flex flex-col ${
                   item.imageFirst ? "lg:flex-row" : "lg:flex-row-reverse"
-                } ${
-                  index < menuItem.length - 1 ? "border-b" : ""
-                } ${
-                  index < menuItem.length - 2 ? "lg:border-b" : ""
-                } ${
-                  index % 2 === 0 ? "lg:border-r" : ""
-                } border-gray-200 min-h-70`}
+                } ${!isLastItem ? "border-b" : ""} ${
+                  isLastRow ? "lg:border-b-0" : "lg:border-b"
+                } ${!isRightColumn ? "lg:border-r" : ""} border-gray-200 min-h-70`}
               >
                 <div className="w-full lg:w-1/2 h-48 sm:h-64 lg:h-auto overflow-hidden shrink-0">
                   <img
                     src={item.image}
                     alt={item.alt}
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
                   />
                 </div>
                 <div className="w-full lg:w-1/2 flex flex-col justify-between p-5 sm:p-6 lg:p-8 bg-white gap-4">
@@ -104,7 +106,7 @@ const Menu = () => {
                       <h3 className="font-bold text-lg sm:text-xl lg:text-2xl text-gray-900 leading-tight">
                         {item.content}
                       </h3>
-                      <p className="text-[#b89552] font-bold text-lg sm:text-xl shrink-0">
+                      <p className="text-yellow-600 font-bold text-lg sm:text-xl shrink-0">
                         ₹{item.price.toLocaleString("en-IN")}
                       </p>
                     </div>
@@ -112,12 +114,12 @@ const Menu = () => {
                       {item.description}
                     </p>
                   </div>
-                  <Link
+                  <NavLink
                     to="/bookAtable"
-                    className="flex items-center justify-center w-full sm:w-36 h-10 sm:h-12 rounded bg-yellow-600 text-white font-medium hover:text-yellow-600 hover:bg-white border border-yellow-600 transition-colors text-sm sm:text-base duration-1000"
+                    className="flex items-center justify-center w-full sm:w-36 h-10 sm:h-12 rounded border border-yellow-600 bg-yellow-600 text-white font-medium hover:bg-white hover:text-yellow-600 transition-colors focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-yellow-700"
                   >
                     Book now
-                  </Link>
+                  </NavLink>
                 </div>
               </div>
             );
