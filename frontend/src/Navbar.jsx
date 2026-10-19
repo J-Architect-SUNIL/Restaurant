@@ -39,7 +39,7 @@ const Navbar = React.memo(() => {
   );
 
   return (
-    <section className="absolute top-15 sm:top-12 lg:top-10 left-0 right-0 z-30 flex flex-wrap lg:flex-nowrap justify-between items-center px-4 sm:px-8 py-3 lg:py-4 text-white bg-black/40 lg:bg-transparent">
+    <nav aria-label="Primary navigation" className="absolute top-15 sm:top-12 lg:top-10 left-0 right-0 z-30 flex flex-wrap lg:flex-nowrap justify-between items-center px-4 sm:px-8 py-3 lg:py-4 text-white bg-black/40 lg:bg-transparent">
       <p className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold tracking-wide">
         Feliciano
       </p>
@@ -59,7 +59,7 @@ const Navbar = React.memo(() => {
         )}
       </button>
 
-      <nav
+      <div
         id="primary-navigation"
         className={`${
           isMenuOpen ? "flex" : "hidden"
@@ -75,8 +75,8 @@ const Navbar = React.memo(() => {
             {item.label}
           </NavLink>
         ))}
-      </nav>
-    </section>
+      </div>
+    </nav>
   );
 });
 
