@@ -9,7 +9,7 @@ const NAV_ITEMS = [
   { path: "stories", label: "Stories" },
   { path: "contact", label: "Contact" },
   { path: "bookAtable", label: "Book a Table" },
-  { path: "/signin", label: "Sign In" },
+  { path: "signin", label: "Sign In" },
 ];
 
 const Navbar = React.memo(() => {
