@@ -7,16 +7,19 @@ import {
 } from "react-router-dom";
 import App from "../App";
 
-const Home = lazy(() => import("../components/home/Home.jsx"));
-const About = lazy(() => import("../components/about/About.jsx"));
-const Menu = lazy(() => import("../components/menu/Menu.jsx"));
-const Stories = lazy(() => import("../components/stories/Stories.jsx"));
-const Contact = lazy(() => import("../components/contact/Contact.jsx"));
-const BookAtable = lazy(() =>
-  import("../components/booking/BookAtable.jsx")
-);
-const SignIn = lazy(() => import("../components/auth/SignIn.jsx"));
-const SignUp = lazy(() => import("../components/auth/SignUp.jsx"));
+// Lazy loaded Public pages
+const Home = lazy(() => import("../features/home/pages/Home.jsx"));
+const About = lazy(() => import("../features/home/about/About.jsx"));
+const Menu = lazy(() => import("../features/home/menu/Menu.jsx"));
+const Stories = lazy(() => import("../features/home/stories/Stories.jsx"));
+const Contact = lazy(() => import("../features/home/contact/Contact.jsx"));
+const BookAtable = lazy(() => import("../features/home/booking/BookAtable.jsx"));
+const SignIn = lazy(() => import("../features/home/auth/SignIn.jsx"));
+const SignUp = lazy(() => import("../features/home/auth/SignUp.jsx"));
+
+// Lazy loaded Dashboard components
+const DashboardLayout = lazy(() => import("../features/dashboard/DashboardLayout.jsx"));
+const UserOverview = lazy(() => import("../features/dashboard/user/pages/UserOverview.jsx"));
 
 function RouteErrorBoundary() {
   const error = useRouteError();
@@ -37,6 +40,7 @@ function RouteErrorBoundary() {
 }
 
 const allRoutes = createBrowserRouter([
+  // 1. PUBLIC SITE ROUTES (Wrapped with TopHeader + Navbar via App.jsx)
   {
     path: "/",
     element: <App />,
@@ -50,6 +54,17 @@ const allRoutes = createBrowserRouter([
       { path: "bookAtable", element: <BookAtable /> },
       { path: "signin", element: <SignIn /> },
       { path: "signup", element: <SignUp /> },
+    ],
+  },
+
+  // 2. DASHBOARD ROUTES (Independent layout with Sidebar, NO public navbar)
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    errorElement: <RouteErrorBoundary />,
+    children: [
+      { index: true, element: <UserOverview /> },
+      // Add other nested user/employee/admin dashboard routes here as needed
     ],
   },
 ]);
