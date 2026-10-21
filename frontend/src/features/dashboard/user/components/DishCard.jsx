@@ -1,4 +1,9 @@
-export default function DishCard({ title, price, description, onBook, onRemove }) {
+const dishCardLabels = {
+  book: 'Book now',
+  remove: 'Remove favourite',
+};
+
+const DishCard = ({ title, price, description, onBook, onRemove }) => {
   return (
     <article className="bg-white p-5 rounded-xl border border-stone-200/80 shadow-sm flex flex-col justify-between">
       <div>
@@ -11,15 +16,17 @@ export default function DishCard({ title, price, description, onBook, onRemove }
           onClick={onBook} 
           className="flex-1 bg-[#D4AF37] hover:bg-[#c39e31] text-[#1A1A1A] text-xs font-semibold py-2 rounded-lg transition-colors"
         >
-          Book now
+          {dishCardLabels.book}
         </button>
         <button 
           onClick={onRemove} 
           className="flex-1 text-stone-600 hover:text-red-600 text-xs font-medium py-2 transition-colors"
         >
-          Remove favourite
+          {dishCardLabels.remove}
         </button>
       </div>
     </article>
   );
-}
+};
+
+export default DishCard;
