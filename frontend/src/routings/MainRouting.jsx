@@ -20,6 +20,10 @@ const SignUp = lazy(() => import("../features/home/auth/SignUp.jsx"));
 // Lazy loaded Dashboard components
 const DashboardLayout = lazy(() => import("../features/dashboard/DashboardLayout.jsx"));
 const UserOverview = lazy(() => import("../features/dashboard/user/pages/UserOverview.jsx"));
+const UserReservations = lazy(()=> import("../features/dashboard/user/pages/UserReservations.jsx"));
+const UserOrders = lazy(()=> import("../features/dashboard/user/pages/UserOrders.jsx"));
+const UserFavourites = lazy(()=> import("../features/dashboard/user/pages/UserFavourites.jsx"));
+const UserProfile = lazy(()=> import("../features/dashboard/user/pages/UserProfile.jsx"));
 
 function RouteErrorBoundary() {
   const error = useRouteError();
@@ -64,6 +68,11 @@ const allRoutes = createBrowserRouter([
     errorElement: <RouteErrorBoundary />,
     children: [
       { index: true, element: <UserOverview /> },
+      { path: "userreservations", element: <UserReservations /> },
+      { path: "userorders", element: <UserOrders /> },
+      { path: "userfavourites", element: <UserFavourites /> },
+      { path: "userprofile", element: <UserProfile /> },
+
       // Add other nested user/employee/admin dashboard routes here as needed
     ],
   },
