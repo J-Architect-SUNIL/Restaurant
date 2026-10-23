@@ -1,4 +1,4 @@
-export default function StatCard({ label, value }) {
+const StatCard = ({ label, value }) => {
   return (
     <article className="bg-white p-5 rounded-xl border border-stone-200/80 shadow-sm flex-1">
       <dl>
@@ -7,4 +7,6 @@ export default function StatCard({ label, value }) {
       </dl>
     </article>
   );
-}
+};
+
+export default StatCard;
