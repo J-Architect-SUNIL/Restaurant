@@ -6,9 +6,9 @@ const dashboardLayoutData = {
   navigationItems: [
     { name: 'Overview', path: '' },
     { name: 'My reservations', path: 'userreservations' },
-    { name: 'My orders', path: 'orders' },
-    { name: 'Favourites', path: 'favourites' },
-    { name: 'Profile', path: 'profile' },
+    { name: 'My orders', path: 'userorders' },
+    { name: 'Favourites', path: 'userfavourites' },
+    { name: 'Profile', path: 'userprofile' },
   ],
   userName: 'Aarav Reddy',
   signedInLabel: 'Signed in as',
