@@ -4,8 +4,10 @@ import {
   RouterProvider,
   isRouteErrorResponse,
   useRouteError,
+  Navigate,
 } from "react-router-dom";
 import App from "../App";
+import DashboardLayout, { role } from "../features/dashboard/DashboardLayout";
 
 // Lazy loaded Public pages
 const Home = lazy(() => import("../features/home/pages/Home.jsx"));
@@ -18,8 +20,28 @@ const SignIn = lazy(() => import("../features/home/auth/SignIn.jsx"));
 const SignUp = lazy(() => import("../features/home/auth/SignUp.jsx"));
 
 // Lazy loaded Dashboard components
-const DashboardLayout = lazy(() => import("../features/dashboard/DashboardLayout.jsx"));
 const UserOverview = lazy(() => import("../features/dashboard/user/pages/UserOverview.jsx"));
+<<<<<<< Updated upstream
+=======
+const UserReservations = lazy(() => import("../features/dashboard/user/pages/UserReservations.jsx"));
+const UserOrders = lazy(() => import("../features/dashboard/user/pages/UserOrders.jsx"));
+const UserFavourites = lazy(() => import("../features/dashboard/user/pages/UserFavourites.jsx"));
+const UserProfile = lazy(() => import("../features/dashboard/user/pages/UserProfile.jsx"));
+
+const AdminOverview = lazy(() => import("../features/dashboard/admin/AdminOverview.jsx"));
+const AdminReservations = lazy(()=> import("../features/dashboard/admin/AdminReservations.jsx"));
+const AdminOrders = lazy(()=> import("../features/dashboard/admin/AdminOrders.jsx"));
+const AdminMenu = lazy(()=> import("../features/dashboard/admin/AdminMenu.jsx"));
+
+// Dynamic redirect depending on current role
+const DashboardRedirect = () => {
+  return role === "admin" ? (
+    <Navigate to="aoverview" replace />
+  ) : (
+    <Navigate to="uoverview" replace />
+  );
+};
+>>>>>>> Stashed changes
 
 function RouteErrorBoundary() {
   const error = useRouteError();
@@ -63,8 +85,22 @@ const allRoutes = createBrowserRouter([
     element: <DashboardLayout />,
     errorElement: <RouteErrorBoundary />,
     children: [
+<<<<<<< Updated upstream
       { index: true, element: <UserOverview /> },
       // Add other nested user/employee/admin dashboard routes here as needed
+=======
+      { index: true, element: <DashboardRedirect /> },
+      { path: "uoverview", element: <UserOverview /> },
+      { path: "userreservations", element: <UserReservations /> },
+      { path: "userorders", element: <UserOrders /> },
+      { path: "userfavourites", element: <UserFavourites /> },
+      { path: "userprofile", element: <UserProfile /> },
+
+      { path: "aoverview", element: <AdminOverview /> },
+      { path: "adminreservations", element: <AdminReservations /> },
+      { path: "adminorders", element: <AdminOrders /> },
+      { path: "adminmenu", element: <AdminMenu /> },
+>>>>>>> Stashed changes
     ],
   },
 ]);
