@@ -1,6 +1,41 @@
 import { useState } from 'react';
 import { Outlet, NavLink } from 'react-router-dom';
 
+export let role = "admin"; // Change to "user" or "admin" as needed
+
+const dashboardConfigs = {
+  user: {
+    brand: 'Feliciano',
+    subBrand: null,
+    navigationItems: [
+      { name: 'Overview', path: 'uoverview' },
+      { name: 'My reservations', path: 'userreservations' },
+      { name: 'My orders', path: 'userorders' },
+      { name: 'Favourites', path: 'userfavourites' },
+      { name: 'Profile', path: 'userprofile' },
+    ],
+    userName: 'Aarav Reddy',
+    signedInLabel: 'Signed in as',
+    switchThemeLabel: 'Switch theme',
+    signOutLabel: 'Sign out',
+  },
+  admin: {
+    brand: 'Feliciano',
+    subBrand: 'ADMIN',
+    navigationItems: [
+      { name: 'Overview', path: 'aoverview' },
+      { name: 'Reservations', path: 'adminreservations' },
+      { name: 'Orders', path: 'adminorders' },
+      { name: 'Menu', path: 'adminmenu' },
+      { name: 'Users', path: 'users' },
+      { name: 'Employees', path: 'employees' },
+      { name: 'Settings', path: 'settings' },
+    ],
+    userName: 'Admin',
+    signedInLabel: 'Signed in as',
+    switchThemeLabel: 'Switch theme',
+    signOutLabel: 'Sign out',
+  },
 const dashboardLayoutData = {
   brand: 'Feliciano',
   navigationItems: [
@@ -18,8 +53,9 @@ const dashboardLayoutData = {
 
 const DashboardLayout = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
+  const currentData = dashboardConfigs[role] || dashboardConfigs.user;
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
+
 
   return (
     <div className="flex h-screen overflow-hidden bg-[#FDFBF7] text-[#1A1A1A]">
@@ -27,6 +63,16 @@ const DashboardLayout = () => {
       {/* 1. Desktop Sidebar (Hidden on mobile) */}
       <aside className="hidden lg:flex w-64 h-full bg-[#111111] text-[#E5E5E5] flex-col justify-between p-6 shrink-0 overflow-y-auto">
         <div>
+          <div className="mb-10">
+            <h1 className="text-2xl font-serif text-white">{currentData.brand}</h1>
+            {currentData.subBrand && (
+              <span className="text-xs font-semibold tracking-widest text-[#D4AF37] uppercase">
+                {currentData.subBrand}
+              </span>
+            )}
+          </div>
+          <nav className="space-y-2">
+            {currentData.navigationItems.map((item) => (
           <h1 className="text-2xl font-serif text-white mb-10">{dashboardLayoutData.brand}</h1>
           <nav className="space-y-2">
             {dashboardLayoutData.navigationItems.map((item) => (
@@ -58,6 +104,14 @@ const DashboardLayout = () => {
             {dashboardLayoutData.switchThemeLabel}
           </button>
           <button className="w-full text-left text-xs text-red-400 hover:text-red-300 py-1">
+            {currentData.signedInLabel}{' '}
+            <span className="font-semibold text-white">{currentData.userName}</span>
+          </div>
+          <button className="w-full text-left text-xs text-gray-300 hover:text-white py-1">
+            {currentData.switchThemeLabel}
+          </button>
+          <button className="w-full text-left text-xs text-red-400 hover:text-red-300 py-1">
+            {currentData.signOutLabel}
             {dashboardLayoutData.signOutLabel}
           </button>
         </footer>
@@ -145,7 +199,6 @@ const DashboardLayout = () => {
           <Outlet />
         </main>
       </div>
-
     </div>
   );
 };
