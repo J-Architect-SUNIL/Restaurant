@@ -1,8 +1,6 @@
+import { useState } from 'react';
 import { Outlet, NavLink } from 'react-router-dom';
 
-<<<<<<< Updated upstream
-export default function DashboardLayout() {
-=======
 export let role = "admin"; // Change to "user" or "admin" as needed
 
 const dashboardConfigs = {
@@ -38,33 +36,33 @@ const dashboardConfigs = {
     switchThemeLabel: 'Switch theme',
     signOutLabel: 'Sign out',
   },
+const dashboardLayoutData = {
+  brand: 'Feliciano',
+  navigationItems: [
+    { name: 'Overview', path: '' },
+    { name: 'My reservations', path: 'userreservations' },
+    { name: 'My orders', path: 'userorders' },
+    { name: 'Favourites', path: 'userfavourites' },
+    { name: 'Profile', path: 'userprofile' },
+  ],
+  userName: 'Aarav Reddy',
+  signedInLabel: 'Signed in as',
+  switchThemeLabel: 'Switch theme',
+  signOutLabel: 'Sign out',
 };
 
 const DashboardLayout = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const currentData = dashboardConfigs[role] || dashboardConfigs.user;
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
-  const currentData = dashboardConfigs[role] || dashboardConfigs.user;
 
->>>>>>> Stashed changes
   return (
-    /* 1. Lock root container height and disable body scrolling */
     <div className="flex h-screen overflow-hidden bg-[#FDFBF7] text-[#1A1A1A]">
       
-      {/* 2. Fixed sidebar with internal scroll fallback if needed */}
-      <aside className="w-64 h-full bg-[#111111] text-[#E5E5E5] flex flex-col justify-between p-6 shrink-0 overflow-y-auto">
+      {/* 1. Desktop Sidebar (Hidden on mobile) */}
+      <aside className="hidden lg:flex w-64 h-full bg-[#111111] text-[#E5E5E5] flex-col justify-between p-6 shrink-0 overflow-y-auto">
         <div>
-<<<<<<< Updated upstream
-          <h1 className="text-2xl font-serif text-white mb-10">Feliciano</h1>
-          <nav className="space-y-2">
-            {[
-              { name: 'Overview', path: '' },
-              { name: 'My reservations', path: 'reservations' },
-              { name: 'My orders', path: 'orders' },
-              { name: 'Favourites', path: 'favourites' },
-              { name: 'Profile', path: 'profile' },
-            ].map((item) => (
-=======
           <div className="mb-10">
             <h1 className="text-2xl font-serif text-white">{currentData.brand}</h1>
             {currentData.subBrand && (
@@ -75,7 +73,9 @@ const DashboardLayout = () => {
           </div>
           <nav className="space-y-2">
             {currentData.navigationItems.map((item) => (
->>>>>>> Stashed changes
+          <h1 className="text-2xl font-serif text-white mb-10">{dashboardLayoutData.brand}</h1>
+          <nav className="space-y-2">
+            {dashboardLayoutData.navigationItems.map((item) => (
               <NavLink
                 key={item.name}
                 to={item.path}
@@ -97,15 +97,13 @@ const DashboardLayout = () => {
         {/* Sidebar Footer */}
         <footer className="border-t border-gray-800 pt-4 space-y-3 mt-6">
           <div className="text-xs text-gray-400">
-<<<<<<< Updated upstream
-            Signed in as <span className="font-semibold text-white">Aarav Reddy</span>
+            {dashboardLayoutData.signedInLabel}{' '}
+            <span className="font-semibold text-white">{dashboardLayoutData.userName}</span>
           </div>
           <button className="w-full text-left text-xs text-gray-300 hover:text-white py-1">
-            Switch theme
+            {dashboardLayoutData.switchThemeLabel}
           </button>
           <button className="w-full text-left text-xs text-red-400 hover:text-red-300 py-1">
-            Sign out
-=======
             {currentData.signedInLabel}{' '}
             <span className="font-semibold text-white">{currentData.userName}</span>
           </div>
@@ -114,17 +112,11 @@ const DashboardLayout = () => {
           </button>
           <button className="w-full text-left text-xs text-red-400 hover:text-red-300 py-1">
             {currentData.signOutLabel}
->>>>>>> Stashed changes
+            {dashboardLayoutData.signOutLabel}
           </button>
         </footer>
       </aside>
 
-<<<<<<< Updated upstream
-      {/* 3. Main Content Area takes remaining width & handles independent scrolling */}
-      <main className="flex-1 h-full p-8 overflow-y-auto">
-        <Outlet />
-      </main>
-=======
       {/* 2. Mobile Drawer Sidebar & Overlay */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-50 flex lg:hidden">
@@ -137,15 +129,8 @@ const DashboardLayout = () => {
           {/* Drawer content */}
           <aside className="relative w-72 h-full bg-[#111111] text-[#E5E5E5] flex flex-col justify-between p-6 z-10 overflow-y-auto shadow-2xl">
             <div>
-              <div className="flex items-start justify-between mb-8">
-                <div>
-                  <h1 className="text-2xl font-serif text-white">{currentData.brand}</h1>
-                  {currentData.subBrand && (
-                    <span className="text-xs font-semibold tracking-widest text-[#D4AF37] uppercase">
-                      {currentData.subBrand}
-                    </span>
-                  )}
-                </div>
+              <div className="flex items-center justify-between mb-8">
+                <h1 className="text-2xl font-serif text-white">{dashboardLayoutData.brand}</h1>
                 <button 
                   onClick={closeMobileMenu}
                   className="text-gray-400 hover:text-white text-lg p-1"
@@ -155,7 +140,7 @@ const DashboardLayout = () => {
               </div>
 
               <nav className="space-y-2">
-                {currentData.navigationItems.map((item) => (
+                {dashboardLayoutData.navigationItems.map((item) => (
                   <NavLink
                     key={item.name}
                     to={item.path}
@@ -178,14 +163,14 @@ const DashboardLayout = () => {
             {/* Mobile Sidebar Footer */}
             <footer className="border-t border-gray-800 pt-4 space-y-3 mt-6">
               <div className="text-xs text-gray-400">
-                {currentData.signedInLabel}{' '}
-                <span className="font-semibold text-white">{currentData.userName}</span>
+                {dashboardLayoutData.signedInLabel}{' '}
+                <span className="font-semibold text-white">{dashboardLayoutData.userName}</span>
               </div>
               <button onClick={closeMobileMenu} className="w-full text-left text-xs text-gray-300 hover:text-white py-1">
-                {currentData.switchThemeLabel}
+                {dashboardLayoutData.switchThemeLabel}
               </button>
               <button onClick={closeMobileMenu} className="w-full text-left text-xs text-red-400 hover:text-red-300 py-1">
-                {currentData.signOutLabel}
+                {dashboardLayoutData.signOutLabel}
               </button>
             </footer>
           </aside>
@@ -197,14 +182,7 @@ const DashboardLayout = () => {
         
         {/* Mobile Top Header Bar with Hamburger Button */}
         <header className="lg:hidden flex items-center justify-between bg-[#111111] text-white px-6 py-4 shrink-0 shadow-md">
-          <div>
-            <h1 className="text-xl font-serif">{currentData.brand}</h1>
-            {currentData.subBrand && (
-              <span className="text-[10px] font-semibold tracking-widest text-[#D4AF37] uppercase">
-                {currentData.subBrand}
-              </span>
-            )}
-          </div>
+          <h1 className="text-xl font-serif">{dashboardLayoutData.brand}</h1>
           <button
             onClick={() => setIsMobileMenuOpen(true)}
             className="p-2 rounded-lg bg-white/10 text-white hover:bg-white/20 transition-colors focus:outline-none"
@@ -221,8 +199,8 @@ const DashboardLayout = () => {
           <Outlet />
         </main>
       </div>
-
->>>>>>> Stashed changes
     </div>
   );
-}
+};
+
+export default DashboardLayout;
