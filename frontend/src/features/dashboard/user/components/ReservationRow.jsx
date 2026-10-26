@@ -6,14 +6,14 @@ const reservationRowLabels = {
 
 const ReservationRow = ({ id, dateTime, guests, status, onCancel }) => {
   return (
-    <article className="bg-white p-4 rounded-xl border border-stone-200/80 flex items-center justify-between shadow-sm">
-      <div>
+    <article className="bg-white p-4 rounded-xl border border-stone-200/80 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shadow-sm">
+      <div className="min-w-0">
         <h3 className="text-sm font-semibold text-[#1A1A1A] mb-0.5">
           {dateTime}
         </h3>
         <p className="text-xs text-stone-500">{guests} guests</p>
       </div>
-      <div className="flex items-center gap-4">
+      <div className="flex flex-wrap items-center gap-3 sm:gap-4">
         <StatusTag status={status} />
         {status.toLowerCase() === 'pending' && (
           <button 

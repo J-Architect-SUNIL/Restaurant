@@ -24,6 +24,9 @@ const dashboardConfigs = {
       { name: 'Reservations', path: 'adminreservations' },
       { name: 'Orders', path: 'adminorders' },
       { name: 'Menu', path: 'adminmenu' },
+      { name: 'Users', path: 'adminusers' },
+      { name: 'Employees', path: 'adminemployees' },
+      { name: 'Settings', path: 'adminsettings' },
     ],
     userName: 'Admin',
   },
@@ -102,7 +105,7 @@ const DashboardLayout = () => {
             className="fixed inset-0 bg-black/60"
             onClick={closeMobileMenu}
           />
-          <aside className="relative z-10 flex h-full w-72 flex-col justify-between overflow-y-auto bg-[#111111] p-6 text-[#E5E5E5] shadow-2xl">
+          <aside className="relative z-10 flex h-full w-72 max-w-[calc(100vw-1rem)] flex-col justify-between overflow-y-auto bg-[#111111] p-6 text-[#E5E5E5] shadow-2xl">
             <div>
               <div className="mb-8 flex items-start justify-between">
                 <div>
@@ -129,7 +132,7 @@ const DashboardLayout = () => {
         </div>
       )}
 
-      <div className="flex h-full flex-1 flex-col overflow-hidden">
+      <div className="flex h-full min-h-0 flex-1 flex-col overflow-hidden">
         <header className="flex shrink-0 items-center justify-between bg-[#111111] px-6 py-4 text-white shadow-md lg:hidden">
           <div>
             <h1 className="font-serif text-xl">{currentData.brand}</h1>
@@ -152,7 +155,7 @@ const DashboardLayout = () => {
           </button>
         </header>
 
-        <main className="h-full flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
+        <main className="min-h-0 flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
           <Outlet />
         </main>
       </div>
