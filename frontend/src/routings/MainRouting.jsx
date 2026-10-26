@@ -20,6 +20,7 @@ const SignUp = lazy(() => import("../features/home/auth/SignUp.jsx"));
 // Lazy loaded Dashboard components
 const DashboardLayout = lazy(() => import("../features/dashboard/DashboardLayout.jsx"));
 const UserOverview = lazy(() => import("../features/dashboard/user/pages/UserOverview.jsx"));
+const UserReservations = lazy(()=> import("../features/dashboard/user/pages/UserReservations.jsx"));
 
 function RouteErrorBoundary() {
   const error = useRouteError();
@@ -64,6 +65,7 @@ const allRoutes = createBrowserRouter([
     errorElement: <RouteErrorBoundary />,
     children: [
       { index: true, element: <UserOverview /> },
+      { path: "userreservations", element: <UserReservations /> },
       // Add other nested user/employee/admin dashboard routes here as needed
     ],
   },
