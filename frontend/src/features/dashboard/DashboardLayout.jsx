@@ -1,151 +1,161 @@
 import { useState } from 'react';
-import { Outlet, NavLink } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 
-const dashboardLayoutData = {
-  brand: 'Feliciano',
-  navigationItems: [
-    { name: 'Overview', path: '' },
-    { name: 'My reservations', path: 'userreservations' },
-    { name: 'My orders', path: 'orders' },
-    { name: 'Favourites', path: 'favourites' },
-    { name: 'Profile', path: 'profile' },
-  ],
-  userName: 'Aarav Reddy',
-  signedInLabel: 'Signed in as',
-  switchThemeLabel: 'Switch theme',
-  signOutLabel: 'Sign out',
+export let role = 'admin';
+
+const dashboardConfigs = {
+  user: {
+    brand: 'Feliciano',
+    subBrand: null,
+    navigationItems: [
+      { name: 'Overview', path: 'uoverview' },
+      { name: 'My reservations', path: 'userreservations' },
+      { name: 'My orders', path: 'userorders' },
+      { name: 'Favourites', path: 'userfavourites' },
+      { name: 'Profile', path: 'userprofile' },
+    ],
+    userName: 'Aarav Reddy',
+  },
+  admin: {
+    brand: 'Feliciano',
+    subBrand: 'ADMIN',
+    navigationItems: [
+      { name: 'Overview', path: 'aoverview' },
+      { name: 'Reservations', path: 'adminreservations' },
+      { name: 'Orders', path: 'adminorders' },
+      { name: 'Menu', path: 'adminmenu' },
+    ],
+    userName: 'Admin',
+  },
 };
 
 const DashboardLayout = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
+  const currentData = dashboardConfigs[role] || dashboardConfigs.user;
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
+
+  const renderNavigation = (mobile = false) => (
+    <nav className="space-y-2">
+      {currentData.navigationItems.map((item) => (
+        <NavLink
+          key={item.name}
+          to={item.path}
+          onClick={mobile ? closeMobileMenu : undefined}
+          className={({ isActive }) =>
+            `block rounded-lg px-4 py-2.5 text-sm font-medium transition-colors ${
+              isActive
+                ? 'bg-[#D4AF37]/15 text-[#D4AF37]'
+                : 'text-gray-300 hover:bg-white/5'
+            }`
+          }
+        >
+          {item.name}
+        </NavLink>
+      ))}
+    </nav>
+  );
+
+  const renderFooter = (mobile = false) => (
+    <footer className="mt-6 space-y-3 border-t border-gray-800 pt-4">
+      <div className="text-xs text-gray-400">
+        Signed in as <span className="font-semibold text-white">{currentData.userName}</span>
+      </div>
+      <button
+        type="button"
+        onClick={mobile ? closeMobileMenu : undefined}
+        className="w-full py-1 text-left text-xs text-gray-300 hover:text-white"
+      >
+        Switch theme
+      </button>
+      <button
+        type="button"
+        onClick={mobile ? closeMobileMenu : undefined}
+        className="w-full py-1 text-left text-xs text-red-400 hover:text-red-300"
+      >
+        Sign out
+      </button>
+    </footer>
+  );
 
   return (
     <div className="flex h-screen overflow-hidden bg-[#FDFBF7] text-[#1A1A1A]">
-      
-      {/* 1. Desktop Sidebar (Hidden on mobile) */}
-      <aside className="hidden lg:flex w-64 h-full bg-[#111111] text-[#E5E5E5] flex-col justify-between p-6 shrink-0 overflow-y-auto">
+      <aside className="hidden h-full w-64 shrink-0 flex-col justify-between overflow-y-auto bg-[#111111] p-6 text-[#E5E5E5] lg:flex">
         <div>
-          <h1 className="text-2xl font-serif text-white mb-10">{dashboardLayoutData.brand}</h1>
-          <nav className="space-y-2">
-            {dashboardLayoutData.navigationItems.map((item) => (
-              <NavLink
-                key={item.name}
-                to={item.path}
-                end={item.path === ''}
-                className={({ isActive }) =>
-                  `block px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                    isActive
-                      ? 'bg-[#D4AF37]/15 text-[#D4AF37]'
-                      : 'hover:bg-white/5 text-gray-300'
-                  }`
-                }
-              >
-                {item.name}
-              </NavLink>
-            ))}
-          </nav>
-        </div>
-
-        {/* Sidebar Footer */}
-        <footer className="border-t border-gray-800 pt-4 space-y-3 mt-6">
-          <div className="text-xs text-gray-400">
-            {dashboardLayoutData.signedInLabel}{' '}
-            <span className="font-semibold text-white">{dashboardLayoutData.userName}</span>
+          <div className="mb-10">
+            <h1 className="font-serif text-2xl text-white">{currentData.brand}</h1>
+            {currentData.subBrand && (
+              <span className="text-xs font-semibold uppercase tracking-widest text-[#D4AF37]">
+                {currentData.subBrand}
+              </span>
+            )}
           </div>
-          <button className="w-full text-left text-xs text-gray-300 hover:text-white py-1">
-            {dashboardLayoutData.switchThemeLabel}
-          </button>
-          <button className="w-full text-left text-xs text-red-400 hover:text-red-300 py-1">
-            {dashboardLayoutData.signOutLabel}
-          </button>
-        </footer>
+          {renderNavigation()}
+        </div>
+        {renderFooter()}
       </aside>
 
-      {/* 2. Mobile Drawer Sidebar & Overlay */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-50 flex lg:hidden">
-          {/* Backdrop overlay */}
-          <div 
-            className="fixed inset-0 bg-black/60 transition-opacity"
+          <button
+            type="button"
+            aria-label="Close menu"
+            className="fixed inset-0 bg-black/60"
             onClick={closeMobileMenu}
           />
-
-          {/* Drawer content */}
-          <aside className="relative w-72 h-full bg-[#111111] text-[#E5E5E5] flex flex-col justify-between p-6 z-10 overflow-y-auto shadow-2xl">
+          <aside className="relative z-10 flex h-full w-72 flex-col justify-between overflow-y-auto bg-[#111111] p-6 text-[#E5E5E5] shadow-2xl">
             <div>
-              <div className="flex items-center justify-between mb-8">
-                <h1 className="text-2xl font-serif text-white">{dashboardLayoutData.brand}</h1>
-                <button 
+              <div className="mb-8 flex items-start justify-between">
+                <div>
+                  <h1 className="font-serif text-2xl text-white">{currentData.brand}</h1>
+                  {currentData.subBrand && (
+                    <span className="text-xs font-semibold uppercase tracking-widest text-[#D4AF37]">
+                      {currentData.subBrand}
+                    </span>
+                  )}
+                </div>
+                <button
+                  type="button"
                   onClick={closeMobileMenu}
-                  className="text-gray-400 hover:text-white text-lg p-1"
+                  aria-label="Close menu"
+                  className="p-1 text-lg text-gray-400 hover:text-white"
                 >
                   ✕
                 </button>
               </div>
-
-              <nav className="space-y-2">
-                {dashboardLayoutData.navigationItems.map((item) => (
-                  <NavLink
-                    key={item.name}
-                    to={item.path}
-                    end={item.path === ''}
-                    onClick={closeMobileMenu}
-                    className={({ isActive }) =>
-                      `block px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                        isActive
-                          ? 'bg-[#D4AF37]/15 text-[#D4AF37]'
-                          : 'hover:bg-white/5 text-gray-300'
-                      }`
-                    }
-                  >
-                    {item.name}
-                  </NavLink>
-                ))}
-              </nav>
+              {renderNavigation(true)}
             </div>
-
-            {/* Mobile Sidebar Footer */}
-            <footer className="border-t border-gray-800 pt-4 space-y-3 mt-6">
-              <div className="text-xs text-gray-400">
-                {dashboardLayoutData.signedInLabel}{' '}
-                <span className="font-semibold text-white">{dashboardLayoutData.userName}</span>
-              </div>
-              <button onClick={closeMobileMenu} className="w-full text-left text-xs text-gray-300 hover:text-white py-1">
-                {dashboardLayoutData.switchThemeLabel}
-              </button>
-              <button onClick={closeMobileMenu} className="w-full text-left text-xs text-red-400 hover:text-red-300 py-1">
-                {dashboardLayoutData.signOutLabel}
-              </button>
-            </footer>
+            {renderFooter(true)}
           </aside>
         </div>
       )}
 
-      {/* 3. Main Wrapper */}
-      <div className="flex-1 flex flex-col h-full overflow-hidden">
-        
-        {/* Mobile Top Header Bar with Hamburger Button */}
-        <header className="lg:hidden flex items-center justify-between bg-[#111111] text-white px-6 py-4 shrink-0 shadow-md">
-          <h1 className="text-xl font-serif">{dashboardLayoutData.brand}</h1>
+      <div className="flex h-full flex-1 flex-col overflow-hidden">
+        <header className="flex shrink-0 items-center justify-between bg-[#111111] px-6 py-4 text-white shadow-md lg:hidden">
+          <div>
+            <h1 className="font-serif text-xl">{currentData.brand}</h1>
+            {currentData.subBrand && (
+              <span className="text-[10px] font-semibold uppercase tracking-widest text-[#D4AF37]">
+                {currentData.subBrand}
+              </span>
+            )}
+          </div>
           <button
+            type="button"
             onClick={() => setIsMobileMenuOpen(true)}
-            className="p-2 rounded-lg bg-white/10 text-white hover:bg-white/20 transition-colors focus:outline-none"
+            className="rounded-lg bg-white/10 p-2 transition-colors hover:bg-white/20 focus:outline-none"
             aria-label="Open menu"
+            aria-expanded={isMobileMenuOpen}
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
         </header>
 
-        {/* Main Content Area */}
-        <main className="flex-1 h-full p-4 sm:p-6 lg:p-8 overflow-y-auto">
+        <main className="h-full flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
           <Outlet />
         </main>
       </div>
-
     </div>
   );
 };
