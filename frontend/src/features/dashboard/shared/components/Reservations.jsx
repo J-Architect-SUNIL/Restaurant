@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import DashboardPageHeader from './DashboardPageHeader';
 
-const AdminReservations = () => {
+const Reservations = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('All');
 
@@ -51,12 +52,11 @@ const AdminReservations = () => {
   return (
     <div className="space-y-8 pb-10">
       
-      {/* Header Section */}
-      <div>
-        <h1 className="font-serif text-2xl sm:text-3xl text-[#D4AF37] mb-1">Bookings</h1>
-        <h2 className="text-lg sm:text-xl font-semibold text-[#1A1A1A] mb-2">Reservations</h2>
-        <p className="text-sm text-gray-500">Confirm, decline or complete bookings.</p>
-      </div>
+      <DashboardPageHeader
+        title="Bookings"
+        subtitle="Reservations"
+        description="Confirm, decline or complete bookings."
+      />
 
       {/* Controls Bar: Search & Status Filter */}
       <div className="flex flex-col sm:flex-row gap-4 items-center justify-between bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
@@ -92,7 +92,7 @@ const AdminReservations = () => {
       {/* Reservations Table */}
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[680px] text-left border-collapse">
+          <table className="w-full min-w-170 text-left border-collapse">
             <thead>
               <tr className="border-b border-gray-100 text-[11px] font-semibold text-gray-400 uppercase tracking-wider bg-gray-50/50">
                 <th className="py-3 px-6">Guest</th>
@@ -190,4 +190,4 @@ const AdminReservations = () => {
   );
 };
 
-export default AdminReservations;
+export default Reservations;

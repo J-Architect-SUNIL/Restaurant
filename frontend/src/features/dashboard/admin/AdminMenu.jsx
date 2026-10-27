@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import DashboardPageHeader from '../shared/components/DashboardPageHeader';
 
 const AdminMenu = () => {
   // Form State for adding a new dish
@@ -23,9 +24,6 @@ const AdminMenu = () => {
       status: 'Available',
     },
   ]);
-
-  // Edit State
-  const [editingId, setEditingId] = useState(null);
 
   // Handle Add Dish
   const handleAddDish = (e) => {
@@ -69,12 +67,11 @@ const AdminMenu = () => {
   return (
     <div className="space-y-8 pb-10">
       
-      {/* Header Section */}
-      <div>
-        <h1 className="font-serif text-3xl text-[#D4AF37] mb-1">Menu</h1>
-        <h2 className="text-xl font-semibold text-[#1A1A1A] mb-2">Menu management</h2>
-        <p className="text-sm text-gray-500">Add dishes, change prices, hide what is sold out.</p>
-      </div>
+      <DashboardPageHeader
+        title="Menu"
+        subtitle="Menu management"
+        description="Add dishes, change prices, hide what is sold out."
+      />
 
       {/* Add Dish Form Card */}
       <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm max-w-4xl">
@@ -137,7 +134,7 @@ const AdminMenu = () => {
 
       {/* Dishes List Section */}
       <div className="space-y-4 max-w-4xl">
-        <h3 className="text-xl font-serif font-bold text-[#1A1A1A]">Dishes</h3>
+        <h3 className="text-xl font-semibold text-[#1A1A1A]">Dishes</h3>
 
         <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
           <div className="overflow-x-auto">

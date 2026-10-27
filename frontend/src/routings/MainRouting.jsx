@@ -27,20 +27,30 @@ const UserFavourites = lazy(() => import("../features/dashboard/user/pages/UserF
 const UserProfile = lazy(() => import("../features/dashboard/user/pages/UserProfile.jsx"));
 
 const AdminOverview = lazy(() => import("../features/dashboard/admin/AdminOverview.jsx"));
-const AdminReservations = lazy(()=> import("../features/dashboard/admin/AdminReservations.jsx"));
+const Reservations = lazy(()=> import("../features/dashboard/shared/components/Reservations.jsx"));
 const AdminOrders = lazy(()=> import("../features/dashboard/admin/AdminOrders.jsx"));
 const AdminMenu = lazy(()=> import("../features/dashboard/admin/AdminMenu.jsx"));
 const AdminUsers = lazy(()=> import("../features/dashboard/admin/AdminUsers.jsx"));
 const AdminEmployees = lazy(()=> import("../features/dashboard/admin/AdminEmployees.jsx"));
 const AdminSettings = lazy(()=> import("../features/dashboard/admin/AdminSettings.jsx"));
 
+const EmployeeOverview = lazy(() => import("../features/dashboard/employee/EmployeeOverview.jsx"));
+const EmployeeKitchenQueue = lazy(() => import("../features/dashboard/employee/EmployeeKitchenQueue.jsx"));
+const EmployeeTables = lazy(() => import("../features/dashboard/employee/EmployeeTables.jsx"));
+const EmployeeSchedule = lazy(() => import("../features/dashboard/employee/EmployeeSchedule.jsx"));
+const EmployeeProfile = lazy(() => import("../features/dashboard/employee/EmployeeProfile.jsx"));
+
 // Dynamic redirect depending on current role
 const DashboardRedirect = () => {
-  return role === "admin" ? (
-    <Navigate to="aoverview" replace />
-  ) : (
-    <Navigate to="uoverview" replace />
-  );
+  if (role === "admin") {
+    return <Navigate to="aoverview" replace />;
+  }
+
+  if (role === "employee") {
+    return <Navigate to="eoverview" replace />;
+  }
+
+  return <Navigate to="uoverview" replace />;
 };
 function RouteErrorBoundary() {
   const error = useRouteError();
@@ -92,12 +102,18 @@ const allRoutes = createBrowserRouter([
       { path: "userprofile", element: <UserProfile /> },
 
       { path: "aoverview", element: <AdminOverview /> },
-      { path: "adminreservations", element: <AdminReservations /> },
+      { path: "reservations", element: <Reservations /> },
       { path: "adminorders", element: <AdminOrders /> },
       { path: "adminmenu", element: <AdminMenu /> },
       { path: "adminusers", element: <AdminUsers /> },
       { path: "adminemployees", element: <AdminEmployees /> },
       { path: "adminsettings", element: <AdminSettings /> },
+
+      { path: "eoverview", element: <EmployeeOverview /> },
+      { path: "ekitchenqueue", element: <EmployeeKitchenQueue /> },
+      { path: "etables", element: <EmployeeTables /> },
+      { path: "eschedule", element: <EmployeeSchedule /> },
+      { path: "eprofile", element: <EmployeeProfile /> },
     ],
   },
 ]);

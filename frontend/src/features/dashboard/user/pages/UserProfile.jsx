@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import DashboardPageHeader from '../../shared/components/DashboardPageHeader';
 
 const userProfileData = {
   heading: 'Profile',
@@ -55,18 +56,11 @@ const UserProfile = ({
 
   return (
     <div className="max-w-5xl space-y-6">
-      {/* Page Header */}
-      <header className="mb-8">
-        <h2 className="font-serif text-3xl text-[#D4AF37] mb-1">
-          {userProfileData.heading}
-        </h2>
-        <h3 className="text-xl font-semibold text-[#1A1A1A] mb-2">
-          {userProfileData.title}
-        </h3>
-        <p className="text-sm text-stone-500">
-          {userProfileData.subtitle}
-        </p>
-      </header>
+      <DashboardPageHeader
+        title={userProfileData.heading}
+        subtitle={userProfileData.title}
+        description={userProfileData.subtitle}
+      />
 
       {/* Details Card Form */}
       <div className="bg-white rounded-2xl border border-stone-200/80 shadow-sm p-6 sm:p-8">

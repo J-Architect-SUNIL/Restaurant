@@ -1,5 +1,5 @@
-import React from 'react';
 import OrderRow from '../components/OrderRow';
+import DashboardPageHeader from '../../shared/components/DashboardPageHeader';
 
 const userOrdersData = {
   heading: 'Orders',
@@ -33,18 +33,11 @@ const userOrdersData = {
 const UserOrders = () => {
   return (
     <div className="max-w-5xl space-y-6">
-      {/* Page Header */}
-      <header className="mb-8">
-        <h2 className="font-serif text-3xl text-[#D4AF37] mb-1">
-          {userOrdersData.heading}
-        </h2>
-        <h3 className="text-xl font-semibold text-[#1A1A1A] mb-2">
-          {userOrdersData.title}
-        </h3>
-        <p className="text-sm text-stone-500">
-          {userOrdersData.subtitle}
-        </p>
-      </header>
+      <DashboardPageHeader
+        title={userOrdersData.heading}
+        subtitle={userOrdersData.title}
+        description={userOrdersData.subtitle}
+      />
 
       {/* Orders Container Card */}
       <div className="bg-white rounded-2xl border border-stone-200/80 shadow-sm divide-y divide-stone-100 overflow-hidden">

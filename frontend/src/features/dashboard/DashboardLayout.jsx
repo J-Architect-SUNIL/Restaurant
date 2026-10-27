@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 
-export let role = 'admin';
+export let role = 'user';
 
 const dashboardConfigs = {
   user: {
@@ -21,14 +21,27 @@ const dashboardConfigs = {
     subBrand: 'ADMIN',
     navigationItems: [
       { name: 'Overview', path: 'aoverview' },
-      { name: 'Reservations', path: 'adminreservations' },
+      { name: 'Reservations', path: 'reservations' },
       { name: 'Orders', path: 'adminorders' },
       { name: 'Menu', path: 'adminmenu' },
       { name: 'Users', path: 'adminusers' },
       { name: 'Employees', path: 'adminemployees' },
       { name: 'Settings', path: 'adminsettings' },
     ],
-    userName: 'Admin',
+    userName: 'Sunil',
+  },
+  employee: {
+    brand: 'Feliciano',
+    subBrand: 'STAFF',
+    navigationItems: [
+      { name: 'Overview', path: 'eoverview' },
+      { name: 'Reservations', path: 'reservations' },
+      { name: 'Kitchen queue', path: 'ekitchenqueue' },
+      { name: 'Tables', path: 'etables' },
+      { name: 'My schedule', path: 'eschedule' },
+      { name: 'Profile', path: 'eprofile' },
+    ],
+    userName: 'Rebecca Wilson',
   },
 };
 
