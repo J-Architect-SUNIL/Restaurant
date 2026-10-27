@@ -115,7 +115,7 @@ const AdminOverview = () => {
         </div>
         
         <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
+          <table className="w-full min-w-[640px] text-left border-collapse">
             <thead>
               <tr className="border-b border-gray-100 text-[11px] font-semibold text-gray-400 uppercase tracking-wider bg-gray-50/50">
                 <th className="py-3 px-6">Order</th>

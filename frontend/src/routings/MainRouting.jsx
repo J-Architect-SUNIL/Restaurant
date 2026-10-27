@@ -30,6 +30,9 @@ const AdminOverview = lazy(() => import("../features/dashboard/admin/AdminOvervi
 const AdminReservations = lazy(()=> import("../features/dashboard/admin/AdminReservations.jsx"));
 const AdminOrders = lazy(()=> import("../features/dashboard/admin/AdminOrders.jsx"));
 const AdminMenu = lazy(()=> import("../features/dashboard/admin/AdminMenu.jsx"));
+const AdminUsers = lazy(()=> import("../features/dashboard/admin/AdminUsers.jsx"));
+const AdminEmployees = lazy(()=> import("../features/dashboard/admin/AdminEmployees.jsx"));
+const AdminSettings = lazy(()=> import("../features/dashboard/admin/AdminSettings.jsx"));
 
 // Dynamic redirect depending on current role
 const DashboardRedirect = () => {
@@ -92,6 +95,9 @@ const allRoutes = createBrowserRouter([
       { path: "adminreservations", element: <AdminReservations /> },
       { path: "adminorders", element: <AdminOrders /> },
       { path: "adminmenu", element: <AdminMenu /> },
+      { path: "adminusers", element: <AdminUsers /> },
+      { path: "adminemployees", element: <AdminEmployees /> },
+      { path: "adminsettings", element: <AdminSettings /> },
     ],
   },
 ]);

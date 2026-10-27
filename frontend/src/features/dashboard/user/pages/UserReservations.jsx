@@ -50,14 +50,14 @@ const UserReservations = () => {
     <div className="max-w-5xl space-y-8">
       {/* Header */}
       <header>
-        <h2 className="font-serif text-3xl text-[#D4AF37] mb-1">{userReservationsData.heading}</h2>
-        <h3 className="text-xl font-semibold text-[#1A1A1A] mb-2">{userReservationsData.title}</h3>
+        <h2 className="font-serif text-2xl sm:text-3xl text-[#D4AF37] mb-1">{userReservationsData.heading}</h2>
+        <h3 className="text-lg sm:text-xl font-semibold text-[#1A1A1A] mb-2">{userReservationsData.title}</h3>
         <p className="text-sm text-stone-500">{userReservationsData.subtitle}</p>
       </header>
 
       {/* Reservation Form Card */}
-      <form onSubmit={handleSubmit} className="bg-white p-6 rounded-2xl border border-stone-200/80 shadow-sm space-y-6">
-        <div className="grid grid-cols-3 gap-4">
+      <form onSubmit={handleSubmit} className="bg-white p-4 sm:p-6 rounded-2xl border border-stone-200/80 shadow-sm space-y-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {/* Date Picker */}
           <div className="space-y-1.5">
             <label className="block text-xs font-semibold text-[#1A1A1A]">
