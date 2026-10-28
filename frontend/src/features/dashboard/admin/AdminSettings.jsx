@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Clock } from 'lucide-react';
+import DashboardPageHeader from '../shared/components/DashboardPageHeader';
 
 const AdminSettings = () => {
   // Opening Hours State
@@ -32,16 +33,11 @@ const AdminSettings = () => {
 
   return (
     <div className="space-y-8 pb-10 max-w-4xl">
-      {/* Header Section */}
-      <div>
-        <h1 className="font-serif text-2xl sm:text-3xl text-[#D4AF37] mb-1">
-          Settings
-        </h1>
-        <h2 className="text-lg sm:text-xl font-semibold text-[#1A1A1A] mb-2">
-          Restaurant settings
-        </h2>
-        <p className="text-sm text-gray-500">Opening hours shown on the website.</p>
-      </div>
+      <DashboardPageHeader
+        title="Settings"
+        subtitle="Restaurant settings"
+        description="Opening hours shown on the website."
+      />
 
       {/* Settings Card Container */}
       <div className="bg-white p-6 sm:p-8 rounded-xl border border-gray-100 shadow-sm">

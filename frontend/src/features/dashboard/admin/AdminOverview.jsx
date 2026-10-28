@@ -1,4 +1,4 @@
-import React from 'react';
+import DashboardPageHeader from '../shared/components/DashboardPageHeader';
 
 const AdminOverview = () => {
   // Mock data for Admin Overview matching the UI
@@ -34,12 +34,11 @@ const AdminOverview = () => {
   return (
     <div className="space-y-8 pb-10">
       
-      {/* Top Header Section */}
-      <div>
-        <h1 className="font-serif text-2xl sm:text-3xl text-[#D4AF37] mb-1">Dashboard</h1>
-        <h2 className="text-lg sm:text-xl font-semibold text-[#1A1A1A] mb-2">Good day, Admin</h2>
-        <p className="text-sm text-gray-500">How Feliciano is doing today.</p>
-      </div>
+      <DashboardPageHeader
+        title="Dashboard"
+        subtitle="Good day, Admin"
+        description="How Feliciano is doing today."
+      />
 
       {/* Stats Cards Row */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -57,7 +56,7 @@ const AdminOverview = () => {
         {/* Revenue by Day Chart (Spans 2 columns) */}
         <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm lg:col-span-2 flex flex-col justify-between">
           <div>
-            <h3 className="text-lg font-serif font-bold text-[#1A1A1A] mb-6">This week</h3>
+            <h3 className="mb-6 text-lg font-semibold text-[#1A1A1A]">This week</h3>
             <h4 className="text-sm font-semibold text-gray-700 mb-6">Revenue by day</h4>
           </div>
 
@@ -81,7 +80,7 @@ const AdminOverview = () => {
         {/* Needs Your Attention Panel */}
         <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex flex-col justify-between">
           <div>
-            <h3 className="text-lg font-serif font-bold text-[#1A1A1A] mb-4">Needs your attention</h3>
+            <h3 className="mb-4 text-lg font-semibold text-[#1A1A1A]">Needs your attention</h3>
             
             <div className="space-y-4">
               {pendingAttention.map((item, idx) => (
@@ -111,7 +110,7 @@ const AdminOverview = () => {
       {/* Latest Orders Table Section */}
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
         <div className="p-6 pb-4">
-          <h3 className="text-lg font-serif font-bold text-[#1A1A1A]">Latest orders</h3>
+          <h3 className="text-lg font-semibold text-[#1A1A1A]">Latest orders</h3>
         </div>
         
         <div className="overflow-x-auto">

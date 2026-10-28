@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ReservationRow from '../components/ReservationRow';
+import DashboardPageHeader from '../../shared/components/DashboardPageHeader';
 
 const userReservationsData = {
   heading: 'Reservations',
@@ -48,12 +49,11 @@ const UserReservations = () => {
 
   return (
     <div className="max-w-5xl space-y-8">
-      {/* Header */}
-      <header>
-        <h2 className="font-serif text-2xl sm:text-3xl text-[#D4AF37] mb-1">{userReservationsData.heading}</h2>
-        <h3 className="text-lg sm:text-xl font-semibold text-[#1A1A1A] mb-2">{userReservationsData.title}</h3>
-        <p className="text-sm text-stone-500">{userReservationsData.subtitle}</p>
-      </header>
+      <DashboardPageHeader
+        title={userReservationsData.heading}
+        subtitle={userReservationsData.title}
+        description={userReservationsData.subtitle}
+      />
 
       {/* Reservation Form Card */}
       <form onSubmit={handleSubmit} className="bg-white p-4 sm:p-6 rounded-2xl border border-stone-200/80 shadow-sm space-y-6">

@@ -2,6 +2,7 @@ import NextTableCard from '../components/NextTableCard';
 import StatCard from '../../shared/components/StatCard';
 import OrderRow from '../components/OrderRow';
 import DishCard from '../components/DishCard';
+import DashboardPageHeader from '../../shared/components/DashboardPageHeader';
 
 const userOverviewData = {
   welcomeHeading: 'Welcome back',
@@ -56,13 +57,12 @@ const userOverviewData = {
 
 const UserOverview = () => {
   return (
-    <div className="max-w-5xl mx-auto space-y-8 pb-10">
-      {/* Welcome Header */}
-      <header>
-        <h2 className="font-serif text-2xl sm:text-3xl text-[#D4AF37] mb-1">{userOverviewData.welcomeHeading}</h2>
-        <h3 className="text-lg sm:text-xl font-semibold text-[#1A1A1A] mb-2">{userOverviewData.greeting}</h3>
-        <p className="text-sm text-stone-500">{userOverviewData.description}</p>
-      </header>
+    <div className="max-w-5xl space-y-8 pb-10">
+      <DashboardPageHeader
+        title={userOverviewData.welcomeHeading}
+        subtitle={userOverviewData.greeting}
+        description={userOverviewData.description}
+      />
 
       {/* Next Table Banner */}
       <NextTableCard />

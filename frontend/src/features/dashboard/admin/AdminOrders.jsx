@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import DashboardPageHeader from '../shared/components/DashboardPageHeader';
 
 const AdminOrders = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -36,12 +37,11 @@ const AdminOrders = () => {
   return (
     <div className="space-y-8 pb-10">
       
-      {/* Header Section */}
-      <div>
-        <h1 className="font-serif text-2xl sm:text-3xl text-[#D4AF37] mb-1">Kitchen</h1>
-        <h2 className="text-lg sm:text-xl font-semibold text-[#1A1A1A] mb-2">Orders</h2>
-        <p className="text-sm text-gray-500">Move each order through the kitchen.</p>
-      </div>
+      <DashboardPageHeader
+        title="Kitchen"
+        subtitle="Orders"
+        description="Move each order through the kitchen."
+      />
 
       {/* Controls Bar: Search & Status Filter */}
       <div className="flex flex-col sm:flex-row gap-4 items-center justify-between bg-white p-4 rounded-xl border border-gray-100 shadow-sm">

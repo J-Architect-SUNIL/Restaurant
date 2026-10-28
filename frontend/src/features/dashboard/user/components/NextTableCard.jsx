@@ -9,7 +9,7 @@ const NextTableCard = () => {
   return (
     <article className="bg-[#1C1814] text-white p-4 sm:p-6 rounded-2xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 shadow-lg">
       <div className="min-w-0">
-        <h3 className="font-serif text-[#D4AF37] text-lg mb-1">{nextTableData.heading}</h3>
+        <h3 className="text-lg font-semibold text-[#D4AF37] mb-1">{nextTableData.heading}</h3>
         <p className="text-lg sm:text-xl font-medium tracking-tight mb-2">{nextTableData.dateTime}</p>
         <p className="text-xs text-stone-400">{nextTableData.details}</p>
       </div>

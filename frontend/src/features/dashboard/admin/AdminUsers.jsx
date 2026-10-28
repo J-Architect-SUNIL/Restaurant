@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import DashboardPageHeader from '../shared/components/DashboardPageHeader';
 
 const AdminUsers = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -59,16 +60,11 @@ const AdminUsers = () => {
 
   return (
     <div className="space-y-8 pb-10">
-      {/* Header Section */}
-      <div>
-        <h1 className="font-serif text-2xl sm:text-3xl text-[#D4AF37] mb-1">
-          Guests
-        </h1>
-        <h2 className="text-lg sm:text-xl font-semibold text-[#1A1A1A] mb-2">
-          Users
-        </h2>
-        <p className="text-sm text-gray-500">Registered guests of the website.</p>
-      </div>
+      <DashboardPageHeader
+        title="Guests"
+        subtitle="Users"
+        description="Registered guests of the website."
+      />
 
       {/* Controls Bar: Search Input */}
       <div className="max-w-xs">

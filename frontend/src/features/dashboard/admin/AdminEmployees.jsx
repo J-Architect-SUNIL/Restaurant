@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import DashboardPageHeader from '../shared/components/DashboardPageHeader';
 
 const AdminEmployees = () => {
   // Form State for adding a new employee
@@ -72,16 +73,11 @@ const AdminEmployees = () => {
 
   return (
     <div className="space-y-8 pb-10">
-      {/* Header Section */}
-      <div>
-        <h1 className="font-serif text-2xl sm:text-3xl text-[#D4AF37] mb-1">
-          Team
-        </h1>
-        <h2 className="text-lg sm:text-xl font-semibold text-[#1A1A1A] mb-2">
-          Employees
-        </h2>
-        <p className="text-sm text-gray-500">Add or deactivate staff accounts.</p>
-      </div>
+      <DashboardPageHeader
+        title="Team"
+        subtitle="Employees"
+        description="Add or deactivate staff accounts."
+      />
 
       {/* Add Employee Form Card */}
       <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm max-w-4xl">
@@ -147,11 +143,11 @@ const AdminEmployees = () => {
 
       {/* Employees Table Section */}
       <div className="space-y-4 max-w-4xl">
-        <h3 className="text-xl font-serif font-bold text-[#1A1A1A]">Team</h3>
+        <h3 className="text-xl font-semibold text-[#1A1A1A]">Team</h3>
 
         <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[620px] text-left border-collapse">
+            <table className="w-full min-w-155 text-left border-collapse">
               <thead>
                 <tr className="border-b border-gray-100 text-[11px] font-semibold text-gray-400 uppercase tracking-wider bg-gray-50/30">
                   <th className="py-4 px-6">Name</th>

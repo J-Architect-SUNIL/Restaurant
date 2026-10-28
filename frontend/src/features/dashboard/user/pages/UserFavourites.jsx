@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import DashboardPageHeader from '../../shared/components/DashboardPageHeader';
 
 const userFavouritesData = {
   heading: 'Favourites',
@@ -78,19 +79,12 @@ const UserFavourites = ({
   };
 
   return (
-    <div className="max-w-6xl space-y-6">
-      {/* Page Header */}
-      <header className="mb-8">
-        <h2 className="font-serif text-3xl text-[#D4AF37] mb-1">
-          {userFavouritesData.heading}
-        </h2>
-        <h3 className="text-xl font-semibold text-[#1A1A1A] mb-2">
-          {userFavouritesData.title}
-        </h3>
-        <p className="text-sm text-stone-500">
-          {userFavouritesData.subtitle}
-        </p>
-      </header>
+    <div className="max-w-5xl space-y-6">
+      <DashboardPageHeader
+        title={userFavouritesData.heading}
+        subtitle={userFavouritesData.title}
+        description={userFavouritesData.subtitle}
+      />
 
       {/* Dishes Grid (4 columns on desktop, matching image layout) */}
       {isLoading ? (
