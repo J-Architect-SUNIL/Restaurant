@@ -5,6 +5,7 @@ import {
   isRouteErrorResponse,
   useRouteError,
   Navigate,
+  useParams,
 } from "react-router-dom";
 import App from "../App";
 import DashboardLayout, { role } from "../features/dashboard/DashboardLayout";
@@ -39,18 +40,67 @@ const EmployeeKitchenQueue = lazy(() => import("../features/dashboard/employee/E
 const EmployeeTables = lazy(() => import("../features/dashboard/employee/EmployeeTables.jsx"));
 const EmployeeSchedule = lazy(() => import("../features/dashboard/employee/EmployeeSchedule.jsx"));
 const EmployeeProfile = lazy(() => import("../features/dashboard/employee/EmployeeProfile.jsx"));
+const SuperadminControlCenter = lazy(() => import("../features/dashboard/superadmin/SuperadminControlCenter.jsx"));
+
+const userPages = {
+  overview: UserOverview,
+  reservations: UserReservations,
+  orders: UserOrders,
+  favourites: UserFavourites,
+  profile: UserProfile,
+};
+
+const adminPages = {
+  overview: AdminOverview,
+  reservations: Reservations,
+  orders: AdminOrders,
+  menu: AdminMenu,
+  users: AdminUsers,
+  settings: AdminSettings,
+};
+
+const employeePages = {
+  overview: EmployeeOverview,
+  reservations: Reservations,
+  "kitchen-queue": EmployeeKitchenQueue,
+  tables: EmployeeTables,
+  schedule: EmployeeSchedule,
+  profile: EmployeeProfile,
+};
+
+const DashboardSection = ({ pages, fallbackPath }) => {
+  const { section = "overview" } = useParams();
+  const Page = pages[section];
+  return Page ? <Page /> : <Navigate to={fallbackPath} replace />;
+};
+
+const UserDashboardSection = () => (
+  <DashboardSection pages={userPages} fallbackPath="/dashboard/user/overview" />
+);
+
+const AdminDashboardSection = () => (
+  <DashboardSection pages={adminPages} fallbackPath="/dashboard/admin/overview" />
+);
+
+const EmployeeDashboardSection = () => (
+  <DashboardSection pages={employeePages} fallbackPath="/dashboard/employee/overview" />
+);
 
 // Dynamic redirect depending on current role
 const DashboardRedirect = () => {
+  if (role === "superadmin") {
+    return <Navigate to="superadmin" replace />;
+  }
+
   if (role === "admin") {
-    return <Navigate to="aoverview" replace />;
+    return <Navigate to="admin/overview" replace />;
   }
 
   if (role === "employee") {
-    return <Navigate to="eoverview" replace />;
+    return <Navigate to="employee/overview" replace />;
   }
 
-  return <Navigate to="uoverview" replace />;
+  return <Navigate to="user/overview" replace />;
 };
 function RouteErrorBoundary() {
   const error = useRouteError();
@@ -95,25 +145,11 @@ const allRoutes = createBrowserRouter([
     errorElement: <RouteErrorBoundary />,
     children: [
       { index: true, element: <DashboardRedirect /> },
-      { path: "uoverview", element: <UserOverview /> },
-      { path: "userreservations", element: <UserReservations /> },
-      { path: "userorders", element: <UserOrders /> },
-      { path: "userfavourites", element: <UserFavourites /> },
-      { path: "userprofile", element: <UserProfile /> },
-
-      { path: "aoverview", element: <AdminOverview /> },
-      { path: "reservations", element: <Reservations /> },
-      { path: "adminorders", element: <AdminOrders /> },
-      { path: "adminmenu", element: <AdminMenu /> },
-      { path: "adminusers", element: <AdminUsers /> },
-      { path: "adminemployees", element: <AdminEmployees /> },
-      { path: "adminsettings", element: <AdminSettings /> },
-
-      { path: "eoverview", element: <EmployeeOverview /> },
-      { path: "ekitchenqueue", element: <EmployeeKitchenQueue /> },
-      { path: "etables", element: <EmployeeTables /> },
-      { path: "eschedule", element: <EmployeeSchedule /> },
-      { path: "eprofile", element: <EmployeeProfile /> },
+      { path: "user/:section?", element: <UserDashboardSection /> },
+      { path: "admin/:section?", element: <AdminDashboardSection /> },
+      { path: "admin/employees/:section?", element: <AdminEmployees /> },
+      { path: "employee/:section?", element: <EmployeeDashboardSection /> },
+      { path: "superadmin/:section?", element: <SuperadminControlCenter /> },
     ],
   },
 ]);
