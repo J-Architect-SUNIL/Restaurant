@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 
 export let role = 'user';
 
@@ -8,11 +8,11 @@ const dashboardConfigs = {
     brand: 'Feliciano',
     subBrand: null,
     navigationItems: [
-      { name: 'Overview', path: 'uoverview' },
-      { name: 'My reservations', path: 'userreservations' },
-      { name: 'My orders', path: 'userorders' },
-      { name: 'Favourites', path: 'userfavourites' },
-      { name: 'Profile', path: 'userprofile' },
+      { name: 'Overview', path: 'user/overview' },
+      { name: 'My reservations', path: 'user/reservations' },
+      { name: 'My orders', path: 'user/orders' },
+      { name: 'Favourites', path: 'user/favourites' },
+      { name: 'Profile', path: 'user/profile' },
     ],
     userName: 'Aarav Reddy',
   },
@@ -20,13 +20,15 @@ const dashboardConfigs = {
     brand: 'Feliciano',
     subBrand: 'ADMIN',
     navigationItems: [
-      { name: 'Overview', path: 'aoverview' },
-      { name: 'Reservations', path: 'reservations' },
-      { name: 'Orders', path: 'adminorders' },
-      { name: 'Menu', path: 'adminmenu' },
-      { name: 'Users', path: 'adminusers' },
-      { name: 'Employees', path: 'adminemployees' },
-      { name: 'Settings', path: 'adminsettings' },
+      { name: 'Overview', path: 'admin/overview' },
+      { name: 'Reservations', path: 'admin/reservations' },
+      { name: 'Orders', path: 'admin/orders' },
+      { name: 'Menu', path: 'admin/menu' },
+      { name: 'Users', path: 'admin/users' },
+      { name: 'Team overview', path: 'admin/employees' },
+      { name: 'Employee applications', path: 'admin/employees/applications' },
+      { name: 'Team access', path: 'admin/employees/team' },
+      { name: 'Settings', path: 'admin/settings' },
     ],
     userName: 'Sunil',
   },
@@ -34,20 +36,36 @@ const dashboardConfigs = {
     brand: 'Feliciano',
     subBrand: 'STAFF',
     navigationItems: [
-      { name: 'Overview', path: 'eoverview' },
-      { name: 'Reservations', path: 'reservations' },
-      { name: 'Kitchen queue', path: 'ekitchenqueue' },
-      { name: 'Tables', path: 'etables' },
-      { name: 'My schedule', path: 'eschedule' },
-      { name: 'Profile', path: 'eprofile' },
+      { name: 'Overview', path: 'employee/overview' },
+      { name: 'Reservations', path: 'employee/reservations' },
+      { name: 'Kitchen queue', path: 'employee/kitchen-queue' },
+      { name: 'Tables', path: 'employee/tables' },
+      { name: 'My schedule', path: 'employee/schedule' },
+      { name: 'Profile', path: 'employee/profile' },
     ],
     userName: 'Rebecca Wilson',
+  },
+  superadmin: {
+    brand: 'Feliciano',
+    subBrand: 'SUPERADMIN',
+    navigationItems: [
+      { name: 'Overview', path: 'superadmin' },
+      { name: 'Users & access', path: 'superadmin/users' },
+      { name: 'Applications', path: 'superadmin/applications' },
+      { name: 'Team access', path: 'superadmin/team' },
+    ],
+    userName: 'Super Admin',
   },
 };
 
 const DashboardLayout = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const currentData = dashboardConfigs[role] || dashboardConfigs.user;
+  const location = useLocation();
+  const isSuperadminRoute = location.pathname.startsWith('/dashboard/superadmin');
+  const isAdminRoute = location.pathname.startsWith('/dashboard/admin');
+  const isEmployeeRoute = location.pathname.startsWith('/dashboard/employee');
+  const currentRole = isSuperadminRoute ? 'superadmin' : isAdminRoute ? 'admin' : isEmployeeRoute ? 'employee' : role;
+  const currentData = dashboardConfigs[currentRole] || dashboardConfigs.user;
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   const renderNavigation = (mobile = false) => (
@@ -56,6 +74,7 @@ const DashboardLayout = () => {
         <NavLink
           key={item.name}
           to={item.path}
+          end={['superadmin', 'admin'].includes(currentRole) && ['superadmin', 'admin/employees'].includes(item.path)}
           onClick={mobile ? closeMobileMenu : undefined}
           className={({ isActive }) =>
             `block rounded-lg px-4 py-2.5 text-sm font-medium transition-colors ${
