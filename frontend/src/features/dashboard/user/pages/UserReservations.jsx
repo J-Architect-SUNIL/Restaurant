@@ -1,37 +1,7 @@
 import { useState } from 'react';
 import ReservationRow from '../components/ReservationRow';
-import DashboardPageHeader from '../../shared/components/DashboardPageHeader';
-
-const userReservationsData = {
-  heading: 'Reservations',
-  title: 'My reservations',
-  subtitle: 'Open every day, 11:00 AM–10:00 PM (Fri–Sat until 11:30 PM).',
-  form: {
-    dateLabel: 'Date',
-    timeLabel: 'Time',
-    guestsLabel: 'Guests',
-    guestPlaceholder: 'Select number of guests',
-    guestNote: 'For parties of more than 10, please contact us.',
-    specialRequestLabel: 'Special request',
-    specialRequestPlaceholder: 'Birthday, window table, allergies',
-    submitLabel: 'Make a reservation',
-  },
-  allReservationsHeading: 'All reservations',
-  reservations: [
-    {
-      id: 'res-1',
-      dateTime: 'Sun, 8 Nov, 2026, 13:00',
-      guests: '2',
-      status: 'Pending',
-    },
-    {
-      id: 'res-2',
-      dateTime: 'Sat, 24 Oct, 2026, 19:30',
-      guests: '4',
-      status: 'Confirmed',
-    },
-  ],
-};
+import DashboardPageHeader from '../../employee/components/DashboardPageHeader';
+import { userReservationsData } from '../userData';
 
 const UserReservations = () => {
   const [formData, setFormData] = useState({

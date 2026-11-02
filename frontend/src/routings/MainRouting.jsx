@@ -28,7 +28,7 @@ const UserFavourites = lazy(() => import("../features/dashboard/user/pages/UserF
 const UserProfile = lazy(() => import("../features/dashboard/user/pages/UserProfile.jsx"));
 
 const AdminOverview = lazy(() => import("../features/dashboard/admin/AdminOverview.jsx"));
-const Reservations = lazy(()=> import("../features/dashboard/shared/components/Reservations.jsx"));
+const Reservations = lazy(() => import("../features/dashboard/employee/components/Reservations.jsx"));
 const AdminOrders = lazy(()=> import("../features/dashboard/admin/AdminOrders.jsx"));
 const AdminMenu = lazy(()=> import("../features/dashboard/admin/AdminMenu.jsx"));
 const AdminUsers = lazy(()=> import("../features/dashboard/admin/AdminUsers.jsx"));

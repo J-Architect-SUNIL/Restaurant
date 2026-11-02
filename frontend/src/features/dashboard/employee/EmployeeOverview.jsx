@@ -1,72 +1,60 @@
-import DashboardPageHeader from '../shared/components/DashboardPageHeader';
+import DashboardPageHeader from './components/DashboardPageHeader';
+import {
+  employeeOverviewHeader,
+  employeeNextBooking,
+  employeeOverviewQueue,
+  employeeOverviewStats,
+  employeeShift,
+} from './employeeData';
 
 const EmployeeOverview = () => {
-  const stats = [
-    { label: 'Bookings today', value: 4 },
-    { label: 'Seated now', value: 1 },
-    { label: 'Open orders', value: 4 },
-    { label: 'Free tables', value: 3 },
-  ];
-
-  const queueItems = [
-    { id: '1051', table: 'T2', dish: 'Pad Thai with Tofu, Avocado Toast', minutes: 4, status: 'Pending' },
-    { id: '1050', table: 'T4', dish: 'Grilled Salmon Steak', minutes: 11, status: 'Preparing' },
-    { id: '1049', table: 'T1', dish: 'Crispy Buttermilk Chicken ×2', minutes: 17, status: 'Preparing' },
-  ];
-
-  const nextBooking = { guest: 'Jason M.', guests: 2, time: '19:30', table: 'T5' };
-
   return (
-    <div className="space-y-8 pb-10 text-[#1A1A1A]">
+    <div className="max-w-5xl space-y-8 pb-10 text-[#1A1A1A]">
       <DashboardPageHeader
-        title="Welcome"
-        subtitle="Hello, Rebecca"
-        description="Your shift, today's bookings and the kitchen at a glance."
+        title={employeeOverviewHeader.title}
+        subtitle={employeeOverviewHeader.subtitle}
+        description={employeeOverviewHeader.description}
       />
 
       <div className="rounded-2xl bg-[#111111] px-8 py-7 text-white shadow-lg">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-2xl font-semibold text-[#D4AF37] sm:text-3xl">Tuesday&apos;s shift</p>
-            <div className="mt-4 text-3xl font-bold">11:00 – 19:00</div>
-            <p className="mt-2 text-stone-300">You haven&apos;t clocked in yet</p>
+            <p className="text-lg font-semibold text-[#D4AF37] sm:text-xl">{employeeShift.title}</p>
+            <div className="mt-2 text-2xl font-bold">{employeeShift.hours}</div>
+            <p className="mt-1 text-sm text-stone-300">{employeeShift.status}</p>
           </div>
           <button
             type="button"
-            className="self-start rounded-xl bg-[#D4AF37] px-7 py-3 text-lg font-semibold text-[#1A1A1A] shadow-sm transition hover:bg-[#c89b2d]"
+            className="self-start rounded-xl bg-[#D4AF37] px-6 py-2.5 text-base font-semibold text-[#1A1A1A] shadow-sm transition hover:bg-[#c89b2d]"
           >
             Clock in
           </button>
         </div>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-4">
-        {stats.map((stat) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {employeeOverviewStats.map((stat) => (
           <div key={stat.label} className="rounded-xl border border-stone-200 bg-[#F8F5F0] px-4 py-5 text-center shadow-sm">
-            <div className="text-4xl font-bold text-[#1A1A1A]">{stat.value}</div>
-            <div className="mt-2 text-sm text-stone-500">{stat.label}</div>
+            <div className="text-2xl font-bold text-[#1A1A1A]">{stat.value}</div>
+            <div className="mt-1 text-sm text-stone-500">{stat.label}</div>
           </div>
         ))}
       </div>
 
       <div className="grid gap-6 xl:grid-cols-[1.5fr_1fr]">
         <div className="rounded-2xl border border-stone-200 bg-[#F8F5F0] p-5 shadow-sm">
-          <h3 className="text-3xl font-bold mb-4">Kitchen queue</h3>
+          <h4 className="font-semibold text-lg text-[#1A1A1A] mb-4">Kitchen queue</h4>
           <div className="space-y-4">
-            {queueItems.map((item) => (
+            {employeeOverviewQueue.map((item) => (
               <div key={item.id} className="rounded-xl border border-stone-200 bg-white p-4">
                 <div className="flex items-center justify-between gap-4">
-                  <div className="text-2xl font-bold text-[#1A1A1A]">#{item.id} <span className="text-lg font-medium text-stone-500">· T{item.table}</span></div>
-                  <div className="text-sm text-stone-500">{item.minutes} min</div>
+                  <div className="text-base font-bold text-[#1A1A1A]">#{item.id} <span className="text-sm font-medium text-stone-500">· T{item.table}</span></div>
+                  <div className="text-xs text-stone-500">{item.minutes} min</div>
                 </div>
-                <div className="mt-2 text-stone-600">{item.dish}</div>
+                <div className="mt-1 text-sm text-stone-600">{item.dish}</div>
                 <button
                   type="button"
-                  className={`mt-3 rounded-lg px-4 py-2 text-sm font-semibold ${
-                    item.status === 'Pending'
-                      ? 'bg-[#D4AF37] text-[#1A1A1A]'
-                      : 'bg-[#D4AF37] text-[#1A1A1A]'
-                  }`}
+                  className="mt-3 rounded-lg bg-[#D4AF37] px-3.5 py-2 text-xs font-semibold text-[#1A1A1A]"
                 >
                   {item.status === 'Pending' ? 'Start preparing' : 'Mark ready'}
                 </button>
@@ -76,13 +64,13 @@ const EmployeeOverview = () => {
         </div>
 
         <div className="rounded-2xl border border-stone-200 bg-[#F8F5F0] p-5 shadow-sm">
-          <h3 className="text-3xl font-bold mb-4">Next booking</h3>
+          <h4 className="font-semibold text-lg text-[#1A1A1A] mb-4">Next booking</h4>
           <div className="rounded-xl border border-stone-200 bg-white p-4">
-            <div className="text-2xl font-bold">{nextBooking.guest} <span className="text-lg font-medium text-stone-500">· {nextBooking.guests} guests</span></div>
-            <div className="mt-2 text-xl text-stone-600">{nextBooking.time} · table T5</div>
-            <div className="mt-5 flex gap-3">
-              <button type="button" className="flex-1 rounded-xl bg-[#D4AF37] px-4 py-3 font-semibold text-[#1A1A1A]">Seat</button>
-              <button type="button" className="flex-1 rounded-xl border border-[#D4AF37] bg-transparent px-4 py-3 font-semibold text-[#D4AF37]">No-show</button>
+            <div className="text-base font-bold">{employeeNextBooking.guest} <span className="text-sm font-medium text-stone-500">· {employeeNextBooking.guests} guests</span></div>
+            <div className="mt-1 text-sm text-stone-600">{employeeNextBooking.time} · table {employeeNextBooking.table}</div>
+            <div className="mt-4 flex gap-3">
+              <button type="button" className="flex-1 rounded-xl bg-[#D4AF37] px-4 py-2 text-sm font-semibold text-[#1A1A1A]">Seat</button>
+              <button type="button" className="flex-1 rounded-xl border border-[#D4AF37] bg-transparent px-4 py-2 text-sm font-semibold text-[#D4AF37]">No-show</button>
             </div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import DashboardPageHeader from '../shared/components/DashboardPageHeader';
+import DashboardPageHeader from '../employee/components/DashboardPageHeader';
+import { initialMenuDishes } from './adminData';
 
 const AdminMenu = () => {
   // Form State for adding a new dish
@@ -7,23 +8,7 @@ const AdminMenu = () => {
   const [price, setPrice] = useState('');
   const [ingredients, setIngredients] = useState('');
 
-  // Initial dishes list matching the screenshot
-  const [dishes, setDishes] = useState([
-    {
-      id: 1,
-      name: 'Pad Thai with Tofu',
-      ingredients: 'Rice noodles, Tofu, Peanuts, Spring onion',
-      price: 150,
-      status: 'Available',
-    },
-    {
-      id: 2,
-      name: 'Grilled Halloumi Salad',
-      ingredients: 'Halloumi, Spinach, Cucumber, Cranberries',
-      price: 99,
-      status: 'Available',
-    },
-  ]);
+  const [dishes, setDishes] = useState(initialMenuDishes);
 
   // Handle Add Dish
   const handleAddDish = (e) => {

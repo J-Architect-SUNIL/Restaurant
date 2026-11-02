@@ -1,55 +1,6 @@
 import { useState } from 'react';
-import DashboardPageHeader from '../../shared/components/DashboardPageHeader';
-
-const userFavouritesData = {
-  heading: 'Favourites',
-  title: 'Favourite dishes',
-  subtitle: 'Save dishes from our menu for quick ordering.',
-  dishes: [
-    {
-      id: 'pad-thai-with-tofu',
-      title: 'Pad Thai with Tofu',
-      price: '150',
-      description: 'Rice noodles, Tofu, Peanuts, Spring onion',
-      isFavourite: true,
-    },
-    {
-      id: 'grilled-halloumi-salad',
-      title: 'Grilled Halloumi Salad',
-      price: '99',
-      description: 'Halloumi, Spinach, Cucumber, Cranberries',
-      isFavourite: false,
-    },
-    {
-      id: 'banana-oat-porridge',
-      title: 'Banana Oat Porridge',
-      price: '200',
-      description: 'Oats, Banana, Flaxseed, Honey',
-      isFavourite: false,
-    },
-    {
-      id: 'crispy-buttermilk-chicken',
-      title: 'Crispy Buttermilk Chicken',
-      price: '300',
-      description: 'Chicken, Buttermilk, Parsley, Lemon',
-      isFavourite: false,
-    },
-    {
-      id: 'avocado-toast',
-      title: 'Avocado Toast',
-      price: '99',
-      description: 'Sourdough, Avocado, Egg, Chili flakes',
-      isFavourite: true,
-    },
-    {
-      id: 'grilled-salmon-steak',
-      title: 'Grilled Salmon Steak',
-      price: '199',
-      description: 'Salmon, Avocado, Lettuce, Cherry tomato',
-      isFavourite: true,
-    },
-  ],
-};
+import DashboardPageHeader from '../../employee/components/DashboardPageHeader';
+import { userFavouritesData } from '../userData';
 
 const UserFavourites = ({
   dishes = userFavouritesData.dishes,

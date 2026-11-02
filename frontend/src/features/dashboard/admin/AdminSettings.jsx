@@ -1,28 +1,19 @@
 import { useState } from 'react';
 import { Clock } from 'lucide-react';
-import DashboardPageHeader from '../shared/components/DashboardPageHeader';
+import DashboardPageHeader from '../employee/components/DashboardPageHeader';
+import { initialOpeningHours, initialRestaurantContact } from './adminData';
 
 const AdminSettings = () => {
-  // Opening Hours State
-  const [hours, setHours] = useState([
-    { day: 'Monday', opens: '11:00', closes: '22:00' },
-    { day: 'Tuesday', opens: '11:00', closes: '22:00' },
-    { day: 'Wednesday', opens: '11:00', closes: '22:00' },
-    { day: 'Thursday', opens: '11:00', closes: '22:00' },
-    { day: 'Friday', opens: '11:00', closes: '23:30' },
-    { day: 'Saturday', opens: '11:00', closes: '23:30' },
-    { day: 'Sunday', opens: '11:00', closes: '22:00' },
-  ]);
+  const [hours, setHours] = useState(initialOpeningHours);
 
-  // Restaurant Contact Info State
-  const [phone, setPhone] = useState('+1 (555) 012-3456');
-  const [email, setEmail] = useState('info@yourdomain.com');
+  const [phone, setPhone] = useState(initialRestaurantContact.phone);
+  const [email, setEmail] = useState(initialRestaurantContact.email);
 
   // Handle time change for specific days
   const handleTimeChange = (index, field, value) => {
-    const updatedHours = [...hours];
-    updatedHours[index][field] = value;
-    setHours(updatedHours);
+    setHours((current) => current.map((item, itemIndex) => (
+      itemIndex === index ? { ...item, [field]: value } : item
+    )));
   };
 
   // Handle Save Settings
@@ -45,7 +36,7 @@ const AdminSettings = () => {
           
           {/* Operating Hours Table / List */}
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[420px] text-left border-collapse">
+            <table className="w-full min-w-105 text-left border-collapse">
               <thead>
                 <tr className="border-b border-gray-100 text-[11px] font-semibold text-gray-400 uppercase tracking-wider bg-gray-50/30">
                   <th className="py-3 px-4">Day</th>

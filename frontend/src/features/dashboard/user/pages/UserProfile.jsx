@@ -1,17 +1,6 @@
 import { useState } from 'react';
-import DashboardPageHeader from '../../shared/components/DashboardPageHeader';
-
-const userProfileData = {
-  heading: 'Profile',
-  title: 'My details',
-  subtitle: 'We use these to confirm bookings and send receipts.',
-  initialProfile: {
-    name: 'Aarav Reddy',
-    email: 'aarav@example.com',
-    phone: '+91 98765 43210',
-    newsletter: false,
-  },
-};
+import DashboardPageHeader from '../../employee/components/DashboardPageHeader';
+import { userProfileData } from '../userData';
 
 const UserProfile = ({
   user = userProfileData.initialProfile,
