@@ -1,40 +1,11 @@
 import { useState } from 'react';
-import DashboardPageHeader from '../shared/components/DashboardPageHeader';
+import DashboardPageHeader from '../employee/components/DashboardPageHeader';
+import { initialAdminUsers } from './adminData';
 
 const AdminUsers = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Initial registered guests list matching the screenshot
-  const [users, setUsers] = useState([
-    {
-      id: 1,
-      name: 'Aarav Reddy',
-      email: 'aarav@example.com',
-      joined: '2 Mar 2026',
-      status: 'Active',
-    },
-    {
-      id: 2,
-      name: 'Jason M.',
-      email: 'jason@example.com',
-      joined: '18 Apr 2026',
-      status: 'Active',
-    },
-    {
-      id: 3,
-      name: 'Ryan H.',
-      email: 'ryan@example.com',
-      joined: '9 May 2026',
-      status: 'Active',
-    },
-    {
-      id: 4,
-      name: 'Spam Bot',
-      email: 'bot@spam.test',
-      joined: '30 Sept 2026',
-      status: 'Blocked',
-    },
-  ]);
+  const [users, setUsers] = useState(initialAdminUsers);
 
   // Toggle Block / Unblock User Status
   const toggleBlockUser = (id) => {

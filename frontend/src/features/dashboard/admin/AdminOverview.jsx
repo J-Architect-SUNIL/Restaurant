@@ -1,49 +1,26 @@
-import DashboardPageHeader from '../shared/components/DashboardPageHeader';
+import DashboardPageHeader from '../employee/components/DashboardPageHeader';
+import {
+  adminLatestOrders,
+  adminOverviewHeader,
+  adminOverviewStats,
+  adminPendingAttention,
+  adminWeeklyRevenue,
+} from './adminData';
 
 const AdminOverview = () => {
-  // Mock data for Admin Overview matching the UI
-  const stats = [
-    { label: 'Order revenue', value: '₹1,248' },
-    { label: 'Orders', value: '5' },
-    { label: 'Reservations today', value: '3' },
-    { label: 'Active guests', value: '3' },
-  ];
-
-  const weeklyRevenue = [
-    { day: 'Mon', amount: '14.2k', height: '60%' },
-    { day: 'Tue', amount: '11.8k', height: '50%' },
-    { day: 'Wed', amount: '12.9k', height: '55%' },
-    { day: 'Thu', amount: '15.4k', height: '68%' },
-    { day: 'Fri', amount: '22.1k', height: '85%' },
-    { day: 'Sat', amount: '24.8k', height: '95%' },
-    { day: 'Sun', amount: '18.3k', height: '75%' },
-  ];
-
-  const pendingAttention = [
-    { name: 'Ryan H.', guests: '4 guests', date: '24 Oct 2026, 13:00' },
-    { name: 'Mark S.', guests: '10 guests', date: '24 Oct 2026, 20:30' },
-    { name: 'Aarav Reddy', guests: '2 guests', date: '8 Nov 2026, 13:00' },
-  ];
-
-  const latestOrders = [
-    { id: '#1051', guest: 'Aarav Reddy', items: 'Pad Thai with Tofu, Avocado Toast', total: '₹249', status: 'Pending', statusClass: 'bg-amber-100 text-amber-700 border-amber-300' },
-    { id: '#1050', guest: 'Jason M.', items: 'Grilled Salmon Steak', total: '₹199', status: 'Preparing', statusClass: 'bg-amber-50 text-amber-600 border-amber-200' },
-    { id: '#1049', guest: 'Ryan H.', items: 'Crispy Buttermilk Chicken ×2', total: '₹600', status: 'Ready', statusClass: 'bg-emerald-50 text-emerald-600 border-emerald-200' },
-  ];
-
   return (
     <div className="space-y-8 pb-10">
       
       <DashboardPageHeader
-        title="Dashboard"
-        subtitle="Good day, Admin"
-        description="How Feliciano is doing today."
+        title={adminOverviewHeader.title}
+        subtitle={adminOverviewHeader.subtitle}
+        description={adminOverviewHeader.description}
       />
 
       {/* Stats Cards Row */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {stats.map((stat, index) => (
-          <div key={index} className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+        {adminOverviewStats.map((stat) => (
+          <div key={stat.label} className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
             <div className="text-2xl font-semibold text-[#1A1A1A] mb-1">{stat.value}</div>
             <div className="text-xs text-gray-500 font-medium">{stat.label}</div>
           </div>
@@ -62,8 +39,8 @@ const AdminOverview = () => {
 
           {/* Bar Chart Container */}
           <div className="flex items-end justify-between h-48 pt-6 px-2 border-b border-gray-100 pb-2">
-            {weeklyRevenue.map((item, idx) => (
-              <div key={idx} className="flex flex-col items-center gap-2 h-full justify-end group">
+            {adminWeeklyRevenue.map((item) => (
+              <div key={item.day} className="flex flex-col items-center gap-2 h-full justify-end group">
                 <span className="text-[10px] text-gray-500 font-medium opacity-0 group-hover:opacity-100 transition-opacity">
                   {item.amount}
                 </span>
@@ -83,8 +60,8 @@ const AdminOverview = () => {
             <h3 className="mb-4 text-lg font-semibold text-[#1A1A1A]">Needs your attention</h3>
             
             <div className="space-y-4">
-              {pendingAttention.map((item, idx) => (
-                <div key={idx} className="pb-3 border-b border-gray-100 last:border-0 last:pb-0">
+              {adminPendingAttention.map((item) => (
+                <div key={`${item.name}-${item.date}`} className="pb-3 border-b border-gray-100 last:border-0 last:pb-0">
                   <div className="flex justify-between items-start mb-1">
                     <span className="text-sm font-semibold text-[#1A1A1A]">{item.name}</span>
                     <span className="text-xs text-gray-500">{item.guests}</span>
@@ -125,8 +102,8 @@ const AdminOverview = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 text-sm">
-              {latestOrders.map((order, idx) => (
-                <tr key={idx} className="hover:bg-gray-50/55 transition-colors">
+              {adminLatestOrders.map((order) => (
+                <tr key={order.id} className="hover:bg-gray-50/55 transition-colors">
                   <td className="py-4 px-6 font-semibold text-[#1A1A1A]">{order.id}</td>
                   <td className="py-4 px-6 text-gray-700">{order.guest}</td>
                   <td className="py-4 px-6 text-gray-600">{order.items}</td>

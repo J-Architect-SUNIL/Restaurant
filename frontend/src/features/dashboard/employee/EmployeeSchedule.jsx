@@ -1,14 +1,5 @@
-import DashboardPageHeader from '../shared/components/DashboardPageHeader';
-
-const schedule = [
-  { day: 'Monday', shift: '11:00 – 19:00' },
-  { day: 'Tuesday', shift: '11:00 – 19:00', isToday: true },
-  { day: 'Wednesday', shift: 'Off' },
-  { day: 'Thursday', shift: '14:00 – 22:00' },
-  { day: 'Friday', shift: '14:00 – 23:30' },
-  { day: 'Saturday', shift: '14:00 – 23:30' },
-  { day: 'Sunday', shift: 'Off' },
-];
+import DashboardPageHeader from './components/DashboardPageHeader';
+import { employeeSchedule } from './employeeData';
 
 const EmployeeSchedule = () => {
   return (
@@ -25,7 +16,7 @@ const EmployeeSchedule = () => {
           <div className="px-6 py-4">Shift</div>
         </div>
 
-        {schedule.map((entry) => (
+        {employeeSchedule.map((entry) => (
           <div
             key={entry.day}
             className={`grid grid-cols-[1fr_1fr] border-b border-stone-200 last:border-b-0 ${entry.isToday ? 'bg-[#f3ead5]' : 'bg-transparent'}`}

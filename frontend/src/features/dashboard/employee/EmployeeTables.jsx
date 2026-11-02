@@ -1,24 +1,6 @@
 import { useState } from 'react';
-import DashboardPageHeader from '../shared/components/DashboardPageHeader';
-
-const initialTables = [
-  { id: 'T1', seats: 2, status: 'Occupied' },
-  { id: 'T2', seats: 4, status: 'Occupied' },
-  { id: 'T3', seats: 4, status: 'Reserved' },
-  { id: 'T4', seats: 2, status: 'Occupied' },
-  { id: 'T5', seats: 2, status: 'Reserved' },
-  { id: 'T6', seats: 6, status: 'Occupied' },
-  { id: 'T7', seats: 4, status: 'Free' },
-  { id: 'T8', seats: 10, status: 'Reserved' },
-  { id: 'T9', seats: 2, status: 'Free' },
-  { id: 'T10', seats: 4, status: 'Free' },
-];
-
-const statusStyles = {
-  Occupied: 'border-red-500 text-red-700',
-  Reserved: 'border-yellow-500 text-yellow-700',
-  Free: 'border-emerald-500 text-emerald-700',
-};
+import DashboardPageHeader from './components/DashboardPageHeader';
+import { initialTables, tableStatusStyles } from './employeeData';
 
 const EmployeeTables = () => {
   const [tables, setTables] = useState(initialTables);
@@ -39,7 +21,7 @@ const EmployeeTables = () => {
         {tables.map((table) => (
           <div
             key={table.id}
-            className={`rounded-xl border bg-[#F8F5F0] p-4 shadow-sm ${statusStyles[table.status]}`}
+            className={`rounded-xl border bg-[#F8F5F0] p-4 shadow-sm ${tableStatusStyles[table.status]}`}
           >
             <div className="text-4xl font-bold text-[#1A1A1A]">{table.id}</div>
             <div className="mt-2 text-lg text-stone-500">{table.seats} seats</div>

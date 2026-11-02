@@ -1,4 +1,4 @@
-import StatusTag from '../../shared/components/StatusTag';
+import StatusTag from '../../employee/components/StatusTag';
 
 const orderRowLabels = {
   orderAgain: 'Order again',

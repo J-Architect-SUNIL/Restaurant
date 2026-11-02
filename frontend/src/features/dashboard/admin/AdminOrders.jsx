@@ -1,18 +1,12 @@
 import { useState } from 'react';
-import DashboardPageHeader from '../shared/components/DashboardPageHeader';
+import DashboardPageHeader from '../employee/components/DashboardPageHeader';
+import { initialAdminOrders } from './adminData';
 
 const AdminOrders = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('All');
 
-  // Initial order data matching the screenshot
-  const [orders, setOrders] = useState([
-    { id: '#1051', guest: 'Aarav Reddy', items: 'Pad Thai with Tofu, Avocado Toast', total: '₹249', status: 'Pending' },
-    { id: '#1050', guest: 'Jason M.', items: 'Grilled Salmon Steak', total: '₹199', status: 'Preparing' },
-    { id: '#1049', guest: 'Ryan H.', items: 'Crispy Buttermilk Chicken ×2', total: '₹600', status: 'Ready' },
-    { id: '#1048', guest: 'Priya N.', items: 'Banana Oat Porridge', total: '₹200', status: 'Delivered' },
-    { id: '#1047', guest: 'Mark S.', items: 'Grilled Halloumi Salad', total: '₹99', status: 'Cancelled' },
-  ]);
+  const [orders, setOrders] = useState(initialAdminOrders);
 
   // Handler to update an order's status from the dropdown
   const handleStatusChange = (id, newStatus) => {

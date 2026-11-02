@@ -1,34 +1,6 @@
 import OrderRow from '../components/OrderRow';
-import DashboardPageHeader from '../../shared/components/DashboardPageHeader';
-
-const userOrdersData = {
-  heading: 'Orders',
-  title: 'My orders',
-  subtitle: 'Reorder anything you’ve enjoyed before.',
-  orders: [
-    {
-      id: '1042',
-      price: '249',
-      date: 'Sun, 11 Oct, 2026',
-      items: 'Pad Thai with Tofu, Avocado Toast',
-      status: 'Delivered',
-    },
-    {
-      id: '1017',
-      price: '199',
-      date: 'Tue, 29 Sept, 2026',
-      items: 'Grilled Salmon Steak',
-      status: 'Delivered',
-    },
-    {
-      id: '0988',
-      price: '500',
-      date: 'Wed, 2 Sept, 2026',
-      items: 'Crispy Buttermilk Chicken, Banana Oat Porridge',
-      status: 'Delivered',
-    },
-  ],
-};
+import DashboardPageHeader from '../../employee/components/DashboardPageHeader';
+import { userOrdersData } from '../userData';
 
 const UserOrders = () => {
   return (

@@ -1,59 +1,9 @@
 import NextTableCard from '../components/NextTableCard';
-import StatCard from '../../shared/components/StatCard';
+import StatCard from '../../employee/components/StatCard';
 import OrderRow from '../components/OrderRow';
 import DishCard from '../components/DishCard';
-import DashboardPageHeader from '../../shared/components/DashboardPageHeader';
-
-const userOverviewData = {
-  welcomeHeading: 'Welcome back',
-  greeting: 'Hello, Aarav',
-  description: 'Your reservations, orders and favourite dishes in one place.',
-  summaryLabel: 'Account summary',
-  stats: [
-    { label: 'Reservations', value: '3' },
-    { label: 'Orders', value: '3' },
-    { label: 'Favourite dishes', value: '3' },
-    { label: 'Loyalty points', value: '420' },
-  ],
-  recentOrdersHeading: 'Recent orders',
-  orders: [
-    {
-      id: '1042',
-      price: '249',
-      date: 'Sun, 11 Oct, 2026',
-      items: 'Pad Thai with Tofu, Avocado Toast',
-      status: 'Delivered',
-    },
-    {
-      id: '1017',
-      price: '199',
-      date: 'Tue, 29 Sept, 2026',
-      items: 'Grilled Salmon Steak',
-      status: 'Delivered',
-    },
-  ],
-  favouritesHeading: 'Your favourites',
-  favourites: [
-    {
-      id: 'pad-thai-with-tofu',
-      title: 'Pad Thai with Tofu',
-      price: '150',
-      description: 'Rice noodles, Tofu, Peanuts, Spring onion',
-    },
-    {
-      id: 'avocado-toast',
-      title: 'Avocado Toast',
-      price: '99',
-      description: 'Sourdough, Avocado, Egg, Chili flakes',
-    },
-    {
-      id: 'grilled-salmon-steak',
-      title: 'Grilled Salmon Steak',
-      price: '199',
-      description: 'Salmon, Avocado, Lettuce, Cherry tomato',
-    },
-  ],
-};
+import DashboardPageHeader from '../../employee/components/DashboardPageHeader';
+import { userOverviewData } from '../userData';
 
 const UserOverview = () => {
   return (

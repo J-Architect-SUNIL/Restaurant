@@ -1,15 +1,9 @@
 import { useState } from 'react';
-import DashboardPageHeader from '../shared/components/DashboardPageHeader';
-
-const initialQueue = [
-  { id: '1051', table: 'T2', dish: 'Pad Thai with Tofu, Avocado Toast', minutes: 4, status: 'Pending' },
-  { id: '1050', table: 'T4', dish: 'Grilled Salmon Steak', minutes: 11, status: 'Preparing' },
-  { id: '1049', table: 'T1', dish: 'Crispy Buttermilk Chicken ×2', minutes: 17, status: 'Preparing' },
-  { id: '1048', table: 'T6', dish: 'Banana Oat Porridge', minutes: 22, status: 'Ready' },
-];
+import DashboardPageHeader from './components/DashboardPageHeader';
+import { initialEmployeeQueue } from './employeeData';
 
 const EmployeeKitchenQueue = () => {
-  const [queue, setQueue] = useState(initialQueue);
+  const [queue, setQueue] = useState(initialEmployeeQueue);
 
   const updateStatus = (id, status) => {
     setQueue((prev) => prev.map((item) => (item.id === id ? { ...item, status } : item)));

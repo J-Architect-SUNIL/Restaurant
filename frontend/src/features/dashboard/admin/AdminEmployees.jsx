@@ -1,40 +1,15 @@
 import { useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Check, CheckCircle2, ChevronRight, Clock3, Mail, Search, ShieldCheck, Users, X } from 'lucide-react';
-import DashboardPageHeader from '../shared/components/DashboardPageHeader';
-
-const initialUsers = [
-  { id: 1, name: 'Aarav Reddy', email: 'aarav@example.com', phone: '+91 98765 43210', status: 'User' },
-  { id: 2, name: 'Jason Miller', email: 'jason@example.com', phone: '+91 98765 11223', status: 'User' },
-  { id: 3, name: 'Ryan Hughes', email: 'ryan@example.com', phone: '+91 99001 22334', status: 'User' },
-];
-
-const initialEmployees = [
-  { id: 4, name: 'Rebecca Wilson', email: 'rebecca@feliciano.com', phone: '+91 98450 77665', jobTitle: 'Head Chef', status: 'Active' },
-  { id: 5, name: 'Kharl Bryant', email: 'kharl@feliciano.com', phone: '+91 98450 33441', jobTitle: 'Chef', status: 'Active' },
-  { id: 6, name: 'Luke Simon', email: 'luke@feliciano.com', phone: '+91 98450 77601', jobTitle: 'Waiter', status: 'Active' },
-];
-
-const initialApplications = [
-  {
-    id: 'EMP-3021',
-    name: 'Arjun Mehta',
-    email: 'arjun.mehta@example.com',
-    phone: '+91 98220 34567',
-    submitted: 'Today, 9:35 AM',
-    status: 'Pending review',
-    details: { address: '18, Lake View Road, Mysuru', jobTitle: 'Kitchen team lead', experience: '3 years as a kitchen team lead', emergencyContact: '+91 98220 34568' },
-  },
-  {
-    id: 'EMP-3020',
-    name: 'Nina Thomas',
-    email: 'nina.thomas@example.com',
-    phone: '+91 98440 90876',
-    submitted: 'Yesterday, 2:05 PM',
-    status: 'Pending review',
-    details: { address: '7, Richmond Town, Bengaluru', jobTitle: 'Guest service', experience: '2 years in guest service', emergencyContact: '+91 98440 90877' },
-  },
-];
+import DashboardPageHeader from '../employee/components/DashboardPageHeader';
+import {
+  employeeManagementPageInfo,
+  employeeManagementStats,
+  initialEmployeeApplications,
+  initialEmployeeFormDetails,
+  initialEmployeeUsers,
+  initialEmployees,
+} from './adminData';
 
 const buttonClass = 'inline-flex items-center justify-center gap-2 rounded-lg px-3.5 py-2 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50';
 
@@ -53,12 +28,12 @@ const AdminEmployees = () => {
   const section = location.pathname.split('/').pop();
   const activeSection = ['applications', 'team'].includes(section) ? section : 'overview';
   const [search, setSearch] = useState('');
-  const [users, setUsers] = useState(initialUsers);
+  const [users, setUsers] = useState(initialEmployeeUsers);
   const [employees, setEmployees] = useState(initialEmployees);
-  const [applications, setApplications] = useState(initialApplications);
+  const [applications, setApplications] = useState(initialEmployeeApplications);
   const [inviteUser, setInviteUser] = useState(null);
   const [formApplication, setFormApplication] = useState(null);
-  const [formDetails, setFormDetails] = useState({ name: '', email: '', phone: '', address: '', jobTitle: '', experience: '', emergencyContact: '' });
+  const [formDetails, setFormDetails] = useState(initialEmployeeFormDetails);
   const [reviewApplication, setReviewApplication] = useState(null);
   const [notice, setNotice] = useState('');
 
@@ -108,7 +83,7 @@ const AdminEmployees = () => {
         }
       : application));
     setFormApplication(null);
-    setFormDetails({ name: '', email: '', phone: '', address: '', jobTitle: '', experience: '', emergencyContact: '' });
+    setFormDetails(initialEmployeeFormDetails);
     setNotice('The employee application was submitted for review.');
   };
 
@@ -143,11 +118,7 @@ const AdminEmployees = () => {
       : employee));
   };
 
-  const pageInfo = {
-    overview: ['Team overview', 'Manage employee invitations, applications, and staff access.'],
-    applications: ['Employee applications', 'Review submitted employee forms and approve or reject access.'],
-    team: ['Team access', 'View your employees and activate or suspend their access.'],
-  }[activeSection];
+  const pageInfo = employeeManagementPageInfo[activeSection];
 
   const renderUsers = (people, emptyMessage) => (
     <div className="overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm">
@@ -236,11 +207,16 @@ const AdminEmployees = () => {
       {activeSection === 'overview' && (
         <section className="space-y-6">
           <div className="grid gap-4 sm:grid-cols-3">
-            {[
-              { label: 'Registered users', value: users.length, note: 'Eligible for employee invitation', icon: Users },
-              { label: 'Active employees', value: employees.filter((employee) => employee.status === 'Active').length, note: 'With active team access', icon: ShieldCheck },
-              { label: 'Pending applications', value: pendingApplications.length, note: 'Waiting for your review', icon: Clock3 },
-            ].map(({ label, value, note, icon: Icon }) => <div key={label} className="rounded-xl border border-stone-200 bg-white p-5 shadow-sm"><div className="flex items-center justify-between"><span className="text-sm font-medium text-stone-500">{label}</span><span className="rounded-lg bg-[#D4AF37]/10 p-2 text-[#9A7620]"><Icon size={18} /></span></div><p className="mt-4 text-3xl font-semibold text-stone-900">{value}</p><p className="mt-1 text-xs text-stone-500">{note}</p></div>)}
+            {employeeManagementStats.map(({ label, note, icon }) => {
+              const Icon = { Users, ShieldCheck, Clock3 }[icon];
+              const value = icon === 'Users'
+                ? users.length
+                : icon === 'ShieldCheck'
+                  ? employees.filter((employee) => employee.status === 'Active').length
+                  : pendingApplications.length;
+
+              return <div key={label} className="rounded-xl border border-stone-200 bg-white p-5 shadow-sm"><div className="flex items-center justify-between"><span className="text-sm font-medium text-stone-500">{label}</span><span className="rounded-lg bg-[#D4AF37]/10 p-2 text-[#9A7620]"><Icon size={18} /></span></div><p className="mt-4 text-3xl font-semibold text-stone-900">{value}</p><p className="mt-1 text-xs text-stone-500">{note}</p></div>;
+            })}
           </div>
 
           <div className="grid gap-6 xl:grid-cols-[1.4fr_1fr]">
